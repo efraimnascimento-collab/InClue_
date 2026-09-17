@@ -1,0 +1,1220 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   GERAL
+========================================= */
+
+body {
+
+    font-family: 'Roboto', sans-serif;
+
+    background-color: #F5F7F6;
+
+    color: #0c0e0c;
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+header {
+
+    background-color: #FFFFFF;
+
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+header h1 {
+
+    font-size: 28px;
+
+}
+
+
+nav {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+}
+
+
+nav a {
+
+    margin: 10px;
+
+    text-decoration: none;
+
+    color: #7FBF90;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+nav a:hover {
+
+    color: #5FAF78;
+
+}
+
+
+nav a.active {
+
+    border-bottom:
+        2px solid #5FAF78;
+
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.perfil-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    background-color: #FFFFFF;
+
+    min-height: 80vh;
+
+    border-left:
+        1px solid #E5E5E5;
+
+    border-right:
+        1px solid #E5E5E5;
+
+}
+
+
+/* =========================================
+   TOPO
+========================================= */
+
+.perfil-topo {
+
+    padding: 40px 35px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    border-bottom:
+        1px solid #E5E5E5;
+
+}
+
+
+/* =========================================
+   FOTO DE PERFIL
+========================================= */
+
+.foto-perfil {
+
+    width: 120px;
+
+    height: 120px;
+
+    min-width: 120px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background-color: #CDEAD2;
+
+    border:
+        4px solid #9FD3A8;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.foto-perfil img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+
+}
+
+
+#icone-foto-perfil {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 55px;
+
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+========================================= */
+
+.informacoes-perfil {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.username-principal {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #0c0e0c;
+
+    margin-bottom: 6px;
+
+    word-break: break-word;
+
+}
+
+
+.nome-secundario {
+
+    font-size: 18px;
+
+    color: #555555;
+
+    margin-bottom: 8px;
+
+}
+
+
+.email {
+
+    font-size: 14px;
+
+    color: #888888;
+
+}
+
+
+/* =========================================
+   BOTÃO EDITAR PERFIL
+========================================= */
+
+.btn-editar {
+
+    background-color: #5FAF78;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 20px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    white-space: nowrap;
+
+    text-decoration: none;
+
+    display: inline-block;
+
+}
+
+
+.btn-editar:hover {
+
+    background-color: #5FAF78;
+
+    transform: scale(1.03);
+
+}
+
+
+.btn-editar:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* =========================================
+   ESTATÍSTICAS
+========================================= */
+
+.estatisticas {
+
+    display: flex;
+
+    justify-content: space-around;
+
+    border-bottom:
+        1px solid #E5E5E5;
+
+    padding: 20px 10px;
+
+}
+
+
+.estatistica {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    min-width: 120px;
+
+}
+
+
+.estatistica strong {
+
+    font-size: 22px;
+
+    color: #0c0e0c;
+
+}
+
+
+.estatistica span {
+
+    font-size: 14px;
+
+    color: #777777;
+
+}
+
+
+/* =========================================
+   ABAS
+========================================= */
+
+.abas {
+
+    display: flex;
+
+    border-bottom:
+        1px solid #E5E5E5;
+
+}
+
+
+.aba {
+
+    flex: 1;
+
+    padding: 16px 10px;
+
+    background-color: white;
+
+    border: none;
+
+    border-bottom:
+        3px solid transparent;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    color: #777777;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.aba:hover {
+
+    background-color: #F5F7F6;
+
+    color: #5FAF78;
+
+}
+
+
+.aba.ativa {
+
+    color: #5FAF78;
+
+    border-bottom:
+        3px solid #5FAF78;
+
+}
+
+
+/* =========================================
+   CONTEÚDO DAS ABAS
+========================================= */
+
+.conteudo-aba {
+
+    display: none;
+
+    padding: 25px;
+
+}
+
+
+.conteudo-aba.ativa {
+
+    display: block;
+
+}
+
+
+.conteudo-aba h2 {
+
+    font-size: 22px;
+
+    margin-bottom: 20px;
+
+    color: #0c0e0c;
+
+}
+
+
+/* =========================================
+   POST
+========================================= */
+
+.post {
+
+    background-color: white;
+
+    border:
+        1px solid #E5E5E5;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+    transition: 0.3s;
+
+}
+
+
+.post:hover {
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.post-cabecalho {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.post-cabecalho strong {
+
+    font-size: 16px;
+
+}
+
+
+.post-cabecalho span {
+
+    color: #777777;
+
+    font-size: 14px;
+
+}
+
+
+.post-local {
+
+    color: #5FAF78;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+}
+
+
+.post-estrelas {
+
+    margin-bottom: 10px;
+
+    font-size: 18px;
+
+}
+
+
+.post-comentario {
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+
+}
+
+
+.post-acoes {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #777777;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   FAVORITOS
+========================================= */
+
+#lista-favoritos {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: 15px;
+
+}
+
+
+#lista-favoritos .post {
+
+    margin-bottom: 0;
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-editar {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background:
+        rgba(0, 0, 0, 0.55);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 9999;
+
+}
+
+
+.modal-editar.ativo {
+
+    display: flex;
+
+}
+
+
+/* =========================================
+   CONTEÚDO MODAL
+========================================= */
+
+.modal-conteudo {
+
+    width: 100%;
+
+    max-width: 450px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    position: relative;
+
+    text-align: center;
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.modal-conteudo h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 8px;
+
+    font-size: 24px;
+
+}
+
+
+.modal-conteudo > p {
+
+    color: #777;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================
+   BOTÃO X
+========================================= */
+
+.fechar-modal {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 30px;
+
+    line-height: 30px;
+
+    cursor: pointer;
+
+    color: #555;
+
+}
+
+
+.fechar-modal:hover {
+
+    color: #5FAF78;
+
+}
+
+
+/* =========================================
+   EDITOR DA FOTO
+========================================= */
+
+.editor-foto {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.foto-edicao {
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background: #CDEAD2;
+
+    border:
+        4px solid #9FD3A8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.foto-edicao img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+
+}
+
+
+#icone-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    height: 100%;
+
+    font-size: 50px;
+
+}
+
+
+/* =========================================
+   BOTÃO ALTERAR FOTO
+========================================= */
+
+.opcao-editar {
+
+    width: 100%;
+
+    max-width: 300px;
+
+    padding: 12px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #5FAF78;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.opcao-editar:hover {
+
+    background: #5FAF78;
+
+}
+
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+.campo-edicao {
+
+    text-align: left;
+
+    margin-bottom: 18px;
+
+}
+
+
+.campo-edicao label {
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.campo-edicao input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cccccc;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+
+}
+
+
+.campo-edicao input:focus {
+
+    border-color: #5FAF78;
+
+    box-shadow:
+        0 0 0 2px rgba(123, 44, 191, 0.1);
+
+}
+
+
+.campo-edicao small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #777;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================
+   USERNAME
+========================================= */
+
+.campo-username {
+
+    display: flex;
+
+    align-items: center;
+
+    border:
+        1px solid #cccccc;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+.campo-username:focus-within {
+
+    border-color: #5FAF78;
+
+    box-shadow:
+        0 0 0 2px rgba(123, 44, 191, 0.1);
+
+}
+
+
+.campo-username span {
+
+    padding-left: 12px;
+
+    font-weight: bold;
+
+    color: #5FAF78;
+
+}
+
+
+.campo-username input {
+
+    border: none;
+
+    box-shadow: none;
+
+    border-radius: 0;
+
+}
+
+
+.campo-username input:focus {
+
+    border: none;
+
+    box-shadow: none;
+
+}
+
+
+/* =========================================
+   BOTÕES DE EDIÇÃO
+========================================= */
+
+.botoes-edicao {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 25px;
+
+}
+
+
+.btn-salvar {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #5FAF78;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-salvar:hover {
+
+    background: #5FAF78;
+
+}
+
+
+.btn-salvar:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+.cancelar-edicao {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #cccccc;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #333;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.cancelar-edicao:hover {
+
+    background: #f3f3f3;
+
+}
+
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+footer {
+
+    background-color: #5FAF78;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+
+    }
+
+
+    nav {
+
+        justify-content: center;
+
+    }
+
+
+    .perfil-topo {
+
+        padding: 30px 20px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .foto-perfil {
+
+        width: 95px;
+
+        height: 95px;
+
+        min-width: 95px;
+
+    }
+
+
+    .username-principal {
+
+        font-size: 24px;
+
+    }
+
+
+    .btn-editar {
+
+        width: 100%;
+
+        margin-top: 10px;
+
+    }
+
+
+    .estatisticas {
+
+        padding: 15px 5px;
+
+    }
+
+
+    .estatistica strong {
+
+        font-size: 19px;
+
+    }
+
+
+    .estatistica span {
+
+        font-size: 12px;
+
+    }
+
+
+    .conteudo-aba {
+
+        padding: 20px 15px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .perfil-topo {
+
+        gap: 15px;
+
+    }
+
+
+    .foto-perfil {
+
+        width: 80px;
+
+        height: 80px;
+
+        min-width: 80px;
+
+    }
+
+
+    .foto-perfil span {
+
+        font-size: 35px;
+
+    }
+
+
+    .username-principal {
+
+        font-size: 21px;
+
+    }
+
+
+    .nome-secundario {
+
+        font-size: 16px;
+
+    }
+
+
+    .email {
+
+        font-size: 13px;
+
+    }
+
+
+    .aba {
+
+        font-size: 13px;
+
+        padding: 14px 5px;
+
+    }
+
+
+    .modal-conteudo {
+
+        padding: 22px;
+
+    }
+
+}
+/* =========================================
+   BOTÃO REMOVER FAVORITO
+========================================= */
+
+.btn-remover-favorito {
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.btn-remover-favorito:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}

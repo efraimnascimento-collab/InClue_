@@ -1,0 +1,1240 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   GERAL
+========================================= */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F7F6;
+    color: #0c0e0c;
+}
+
+
+h1 {
+    font-size: 28px;
+}
+
+
+h2 {
+    font-size: 28px;
+}
+
+
+p {
+    font-size: 16px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    background-color: #FFFFFF;
+
+    padding: 20px;
+
+    padding-right: 95px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1);
+
+    position: relative;
+}
+
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    padding-right: 10px;
+}
+
+
+nav a {
+    margin: 10px;
+
+    text-decoration: none;
+
+    color: #7FBF90;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+    white-space: nowrap;
+}
+
+
+nav a:hover {
+    color: #5FAF78;
+}
+
+
+nav a.active {
+    border-bottom:
+        2px solid #5FAF78;
+}
+
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+.pagina {
+    padding: 40px;
+
+    min-height: auto;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.card {
+    background-color: white;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   CARD DE AVALIAÇÃO
+========================================= */
+
+.card-avaliacao {
+    max-width: 650px;
+
+    margin: 25px auto;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid #E5E5E5;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================
+   CABEÇALHO DA AVALIAÇÃO
+========================================= */
+
+.cabecalho-avaliacao {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   FOTO DE PERFIL
+========================================= */
+
+.foto-perfil-avaliacao {
+    width: 48px;
+
+    height: 48px;
+
+    min-width: 48px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border:
+        1px solid #E0E0E0;
+
+    background-color: #F5F7F6;
+}
+
+
+/* =========================================
+   DADOS DO USUÁRIO
+========================================= */
+
+.dados-usuario-avaliacao {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-width: 0;
+}
+
+
+.username-avaliacao {
+    font-size: 16px;
+
+    color: #111111;
+
+    line-height: 1.3;
+}
+
+
+.nome-avaliacao {
+    font-size: 14px;
+
+    color: #777777;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   NOTA
+========================================= */
+
+.nota-avaliacao {
+    font-size: 22px;
+
+    letter-spacing: 2px;
+
+    color: #F4B400;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   LOCAL
+========================================= */
+
+.local-avaliacao {
+    font-size: 14px;
+
+    color: #777777;
+
+    margin-bottom: 12px;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   COMENTÁRIO
+========================================= */
+
+.comentario-avaliacao {
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: #222222;
+
+    margin-bottom: 15px;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   FOTO DA AVALIAÇÃO
+========================================= */
+
+.foto-avaliacao {
+    width: 100%;
+
+    max-width: 600px;
+
+    height: 350px;
+
+    margin: 15px auto;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    background-color: #F5F7F6;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+
+.foto-avaliacao img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.3s;
+}
+
+
+.foto-avaliacao img:hover {
+    transform: scale(1.02);
+}
+
+
+/* =========================================
+   CURTIDAS
+========================================= */
+
+.area-curtida {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid #EEEEEE;
+}
+
+
+/* =========================================
+   BOTÃO CURTIR
+========================================= */
+
+.btn-curtir {
+    background: none;
+
+    border: none;
+
+    padding: 5px 0;
+
+    color: #555555;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-curtir:hover {
+    color: #5FAF78;
+
+    transform: none;
+}
+
+
+.btn-curtir.curtido {
+    color: #5FAF78;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   CONTADOR
+========================================= */
+
+.contador-curtidas {
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BOTÃO PADRÃO
+========================================= */
+
+.btn {
+    display: inline-block;
+
+    background-color: #9FD3A8;
+
+    color: #111111;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 20px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
+}
+
+
+.btn:hover {
+    background-color: #5FAF78;
+
+    color: white;
+
+    transform: scale(1.03);
+}
+
+
+/* =========================================
+   BOTÃO EXCLUIR
+========================================= */
+
+.btn-excluir {
+    margin-top: 15px;
+
+    background-color: #9FD3A8;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    padding: 9px 18px;
+}
+
+
+.btn-excluir:hover {
+    background-color: #5FAF78;
+
+    color: white;
+}
+
+
+/* =========================================
+   MODAL DA FOTO
+========================================= */
+
+.modal-foto {
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color:
+        rgba(0, 0, 0, 0.85);
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+
+    cursor: pointer;
+}
+
+
+.modal-foto.ativo {
+    display: flex;
+}
+
+
+.modal-foto img {
+    max-width: 95%;
+
+    max-height: 90%;
+
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    cursor: default;
+}
+
+
+/* =========================================
+   FECHAR MODAL
+========================================= */
+
+.fechar-modal-foto {
+    position: absolute;
+
+    top: 20px;
+
+    right: 30px;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 42px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background-color: #5FAF78;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+
+        padding-right: 20px;
+    }
+
+
+    nav {
+        justify-content: center;
+
+        padding-right: 0;
+    }
+
+
+    nav a {
+        margin: 6px 8px;
+    }
+
+
+    .pagina {
+        padding: 25px 15px;
+    }
+
+
+    .card-avaliacao {
+        padding: 16px;
+
+        margin-left: 0;
+
+        margin-right: 0;
+    }
+
+
+    .foto-perfil-avaliacao {
+        width: 44px;
+
+        height: 44px;
+
+        min-width: 44px;
+    }
+
+
+    .foto-avaliacao {
+        height: 250px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    header {
+        padding-right: 20px;
+    }
+
+
+    nav a {
+        font-size: 14px;
+
+        margin: 5px 6px;
+    }
+
+
+    .foto-avaliacao {
+        height: 220px;
+    }
+
+}
+/* =========================================
+   INFORMAÇÕES DE ACESSIBILIDADE
+========================================= */
+
+.informacao-acessibilidade {
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background-color: #F5F7F6;
+
+    border-radius: 12px;
+
+    border-left: 4px solid #5FAF78;
+
+}
+
+
+.informacao-acessibilidade strong {
+
+    display: block;
+
+    color: #5FAF78;
+
+    font-size: 15px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.informacao-acessibilidade p {
+
+    margin: 0;
+
+    color: #333;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+/* =========================================
+   BOTÕES DAS AVALIAÇÕES
+   ========================================= */
+
+.btn,
+button.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #2e7d32;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover,
+button.btn:hover {
+    background: #256b29;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active,
+button.btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   ÁREA DE AÇÕES DA AVALIAÇÃO
+   ========================================= */
+
+.acoes-avaliacao {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 15px;
+
+    padding-top: 10px;
+}
+
+
+/* =========================================
+   BOTÃO CURTIR - ESTILO TWITTER/X
+   ========================================= */
+
+.botao-curtir {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    min-width: 80px;
+
+    padding: 7px 13px;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: #536471;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* coração */
+
+.botao-curtir::first-letter {
+    font-size: 20px;
+}
+
+
+/* passar o mouse */
+
+.botao-curtir:hover {
+    background: rgba(249, 24, 128, 0.10);
+
+    color: #f91880;
+}
+
+
+/* clique */
+
+.botao-curtir:active {
+    transform: scale(0.90);
+}
+
+
+/* =========================================
+   CURTIDO
+   ========================================= */
+
+.botao-curtir.curtido {
+    color: #f91880;
+
+    background: rgba(249, 24, 128, 0.10);
+}
+
+
+.botao-curtir.curtido:hover {
+    background: rgba(249, 24, 128, 0.15);
+}
+
+
+/* =========================================
+   CORAÇÃO
+   ========================================= */
+
+.botao-curtir {
+    position: relative;
+}
+
+
+/*
+   Quando o botão estiver curtido,
+   o coração fica preenchido.
+*/
+
+.botao-curtir.curtido {
+    font-weight: 600;
+}
+
+
+/* =========================================
+   ANIMAÇÃO DO CORAÇÃO
+   ========================================= */
+
+@keyframes coracaoCurtir {
+
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.35);
+    }
+
+    50% {
+        transform: scale(0.90);
+    }
+
+    75% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+.botao-curtir.curtido {
+    animation:
+        coracaoCurtir 0.35s ease;
+}
+
+
+/* =========================================
+   CONTADOR DE CURTIDAS
+   ========================================= */
+
+.contador-curtidas {
+    color: #536471;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BOTÃO EXCLUIR
+   ========================================= */
+
+.botao-excluir {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 15px;
+
+    padding: 8px 16px;
+
+    border: 1px solid #d9534f;
+
+    border-radius: 999px;
+
+    background: white;
+
+    color: #d9534f;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.botao-excluir:hover {
+    background: #d9534f;
+
+    color: white;
+
+    transform: translateY(-1px);
+}
+
+
+.botao-excluir:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   BOTÕES DOS FILTROS / DROPDOWNS
+   ========================================= */
+
+.dropdown-button {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 12px 18px;
+
+    border: 1px solid #2e7d32;
+
+    border-radius: 999px;
+
+    background: white;
+
+    color: #2e7d32;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.dropdown-button:hover {
+    background: #2e7d32;
+
+    color: white;
+
+    box-shadow:
+        0 3px 8px rgba(46, 125, 50, 0.20);
+}
+
+
+.dropdown-button.aberto {
+    background: #2e7d32;
+
+    color: white;
+}
+
+
+/* =========================================
+   BOTÃO PRINCIPAL "FAZER AVALIAÇÃO"
+   ========================================= */
+
+a.btn {
+    border-radius: 999px;
+
+    background: #2e7d32;
+
+    color: #fff;
+
+    padding: 11px 22px;
+
+    font-weight: 600;
+}
+
+
+a.btn:hover {
+    background: #256b29;
+
+    color: white;
+}
+/* =====================================================
+   INFORMAÇÕES DE ACESSIBILIDADE
+   ===================================================== */
+
+.informacoes-acessibilidade {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-top: 18px;
+    padding-top: 16px;
+
+    border-top: 1px solid #e6e9e6;
+}
+
+
+/* =====================================================
+   CADA PERGUNTA
+   ===================================================== */
+
+.campo-acessibilidade {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    /* SEM caixa ao redor */
+    background: transparent;
+
+    border: none;
+
+    padding: 0;
+}
+
+
+/* =====================================================
+   TEXTO DA PERGUNTA
+   ===================================================== */
+
+.campo-acessibilidade strong {
+    display: block;
+
+    color: #287a4a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin: 0;
+}
+
+
+/* =====================================================
+   ÁREA DAS OPÇÕES
+   ===================================================== */
+
+.tags-acessibilidade {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 0;
+
+    background: transparent;
+}
+
+
+/* =====================================================
+   CADA OPÇÃO SELECIONADA
+   ===================================================== */
+
+.tag-acessibilidade {
+    display: inline-flex;
+
+    align-items: center;
+
+    background: #fffefb;
+
+    border: 1px solid #e1e4df;
+
+    border-radius: 9px;
+
+    padding: 7px 11px;
+
+    color: #3f4742;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 1.3;
+
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    transition: 0.2s ease;
+}
+
+
+/* =====================================================
+   HOVER
+   ===================================================== */
+
+.tag-acessibilidade:hover {
+    background: #ffffff;
+
+    border-color: #cfd8d2;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   NECESSIDADE
+   ===================================================== */
+
+.tag-necessidade {
+    background: #fffefb;
+
+    border-color: #d8e2db;
+
+    color: #35443a;
+}
+
+
+/* =====================================================
+   IMPACTO
+   ===================================================== */
+
+.tag-impacto {
+    background: #fffefb;
+
+    border-color: #dedfdc;
+
+    color: #4b504d;
+}
+
+
+/* =====================================================
+   CELULAR
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .tags-acessibilidade {
+        gap: 6px;
+    }
+
+    .tag-acessibilidade {
+        font-size: 12px;
+
+        padding: 6px 9px;
+
+        border-radius: 8px;
+    }
+
+}
+/* =========================================
+   ACESSIBILIDADE
+   ========================================= */
+
+.informacoes-acessibilidade {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-top: 12px;
+    padding-top: 10px;
+
+    border-top: 1px solid #eeeeea;
+}
+
+
+/* Pergunta */
+.campo-acessibilidade {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* Texto da pergunta */
+.campo-acessibilidade strong {
+    color: #378653;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin: 0;
+}
+
+
+/* Opções */
+.tags-acessibilidade {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+
+/* Cada opção */
+.tag-acessibilidade {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 4px 8px;
+
+    background: #fff;
+
+    border: 1px solid #e1e4df;
+
+    border-radius: 7px;
+
+    color: #4b554e;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+
+/* Necessidade */
+.tag-necessidade {
+    background: #fff;
+
+    border-color: #d7e3da;
+
+    color: #3d5947;
+}
+
+
+/* Impacto */
+.tag-impacto {
+    background: #fff;
+
+    border-color: #e0e1de;
+
+    color: #555a56;
+}

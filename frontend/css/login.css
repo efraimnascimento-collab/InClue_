@@ -1,0 +1,161 @@
+/* =========================================
+   LOGIN - INCLUE
+========================================= */
+
+/* Deixa a página ocupando toda a tela */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   FORMULÁRIO DE LOGIN
+========================================= */
+
+#contato-form {
+    width: 80%;
+    max-width: 400px;
+
+    /* centraliza horizontalmente e verticalmente */
+    margin: auto;
+
+    background-color: #FFFFFF;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+#contato-form h2 {
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+#contato-form input {
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+#contato-form input:focus {
+    border: 1px solid #5FAF78;
+
+    outline: none;
+
+    box-shadow: 0 0 5px #5FAF78;
+}
+
+/* =========================================
+   BOTÃO ENTRAR
+   MESMAS CORES DO INCLUE
+========================================= */
+
+#contato-form .btn {
+    background-color: #9FD3A8;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 20px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
+
+    color: black;
+}
+
+#contato-form .btn:hover {
+    background-color: #5FAF78;
+
+    color: white;
+
+    transform: scale(1.05);
+}
+
+#contato-form .btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   TEXTO CADASTRO
+========================================= */
+
+#contato-form p {
+    text-align: center;
+
+    font-size: 16px;
+
+    margin-top: 5px;
+}
+
+#contato-form p a {
+    color: #5FAF78;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+#contato-form p a:hover {
+    color: #7FBF90;
+
+    text-decoration: underline;
+}
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+body footer {
+    margin-top: 0;
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 480px) {
+
+    #contato-form {
+        width: 90%;
+
+        padding: 25px 20px;
+
+        margin: 30px auto;
+    }
+
+}

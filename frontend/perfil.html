@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Perfil - InClue</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/perfil.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     CABEÇALHO
+========================================= -->
+
+<header>
+
+    <h1>InClue</h1>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="avaliacoes.html">
+            Avaliações
+        </a>
+
+        <a href="sobre.html">
+            Sobre
+        </a>
+
+        <a href="contato.html">
+            Contato
+        </a>
+
+        <a href="acessibilidade.html">
+            Acessibilidade
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================
+     PERFIL
+========================================= -->
+
+<main class="perfil-container">
+
+
+    <!-- =====================================
+         TOPO
+    ====================================== -->
+
+    <section class="perfil-topo">
+
+
+        <!-- FOTO -->
+
+        <div class="foto-perfil">
+
+            <img
+                id="foto-usuario"
+                src="img/perfil-padrao.png"
+                alt="Foto de perfil"
+            >
+
+        </div>
+
+
+        <!-- INFORMAÇÕES -->
+
+        <div class="informacoes-perfil">
+
+            <h1
+                class="username-principal"
+                id="username-usuario"
+            >
+                @usuario
+            </h1>
+
+
+            <p
+                class="nome-secundario"
+                id="nome-usuario"
+            >
+                Carregando...
+            </p>
+
+
+            <p
+                class="email"
+                id="email-usuario"
+            >
+                Carregando...
+            </p>
+
+        </div>
+
+
+        <!-- BOTÃO EDITAR -->
+
+        <button
+            class="btn-editar"
+            id="btn-editar-perfil"
+            type="button"
+        >
+            Editar perfil
+        </button>
+
+
+    </section>
+
+
+    <!-- =====================================
+         ESTATÍSTICAS
+    ====================================== -->
+
+    <section class="estatisticas">
+
+        <div class="estatistica">
+
+            <strong id="total-avaliacoes">
+                0
+            </strong>
+
+            <span>
+                Avaliações
+            </span>
+
+        </div>
+
+
+        <div class="estatistica">
+
+            <strong id="total-favoritos">
+                0
+            </strong>
+
+            <span>
+                Favoritos
+            </span>
+
+        </div>
+
+
+        <div class="estatistica">
+
+            <strong id="total-curtidas">
+                0
+            </strong>
+
+            <span>
+                Curtidas
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         ABAS
+    ====================================== -->
+
+    <div class="abas">
+
+        <button
+            class="aba ativa"
+            type="button"
+            data-aba="avaliacoes"
+        >
+            Avaliações
+        </button>
+
+
+        <button
+            class="aba"
+            type="button"
+            data-aba="curtidas"
+        >
+            Curtidas
+        </button>
+
+
+        <button
+            class="aba"
+            type="button"
+            data-aba="favoritos"
+        >
+            Favoritos
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         AVALIAÇÕES
+    ====================================== -->
+
+    <section
+        id="aba-avaliacoes"
+        class="conteudo-aba ativa"
+    >
+
+        <h2>
+            Minhas avaliações
+        </h2>
+
+        <div id="lista-minhas-avaliacoes">
+
+            <div class="post">
+
+                <p>
+                    Carregando avaliações...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         CURTIDAS
+    ====================================== -->
+
+    <section
+        id="aba-curtidas"
+        class="conteudo-aba"
+    >
+
+        <h2>
+            Avaliações que curti
+        </h2>
+
+        <div id="lista-curtidas">
+
+            <div class="post">
+
+                <p>
+                    Carregando curtidas...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         FAVORITOS
+    ====================================== -->
+
+    <section
+        id="aba-favoritos"
+        class="conteudo-aba"
+    >
+
+        <h2>
+            Meus locais favoritos
+        </h2>
+
+        <div id="lista-favoritos">
+
+            <div class="post">
+
+                <p>
+                    Carregando favoritos...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     MODAL EDITAR PERFIL
+========================================= -->
+
+<div
+    id="modal-editar"
+    class="modal-editar"
+>
+
+
+    <div class="modal-conteudo">
+
+
+        <!-- FECHAR -->
+
+        <button
+            id="fechar-modal"
+            class="fechar-modal"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Editar perfil
+        </h2>
+
+
+        <p>
+            Altere suas informações.
+        </p>
+
+
+        <!-- =================================
+             FOTO
+        ================================== -->
+
+        <div class="editor-foto">
+
+            <div class="foto-edicao">
+
+                <img
+                    id="preview-foto"
+                    src="img/perfil-padrao.png"
+                    alt="Prévia da foto"
+                >
+
+            </div>
+
+
+            <button
+                id="btn-alterar-foto"
+                class="opcao-editar"
+                type="button"
+            >
+                Alterar foto
+            </button>
+
+
+            <input
+                type="file"
+                id="input-foto"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                hidden
+            >
+
+        </div>
+
+
+        <!-- =================================
+             NOME
+        ================================== -->
+
+        <div class="campo-edicao">
+
+            <label for="editar-nome">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                id="editar-nome"
+                maxlength="100"
+                placeholder="Seu nome"
+            >
+
+        </div>
+
+
+        <!-- =================================
+             USERNAME
+        ================================== -->
+
+        <div class="campo-edicao">
+
+            <label for="editar-username">
+                @Usuário
+            </label>
+
+            <div class="campo-username">
+
+                <span>
+                    @
+                </span>
+
+                <input
+                    type="text"
+                    id="editar-username"
+                    maxlength="50"
+                    placeholder="seuusuario"
+                >
+
+            </div>
+
+            <small>
+                Use apenas letras, números, ponto e underline.
+            </small>
+
+        </div>
+
+
+        <!-- =================================
+             BOTÕES
+        ================================== -->
+
+        <div class="botoes-edicao">
+
+            <button
+                id="btn-salvar-edicao"
+                class="btn-salvar"
+                type="button"
+            >
+                Salvar alterações
+            </button>
+
+
+            <button
+                id="btn-cancelar-edicao"
+                class="cancelar-edicao"
+                type="button"
+            >
+                Cancelar
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     RODAPÉ
+========================================= -->
+
+<footer>
+
+    &copy; 2026 - Projeto desenvolvido por -
+    Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
+    Mostra STEAM
+
+</footer>
+
+
+<script src="js/perfil.js"></script>
+
+
+</body>
+
+</html>

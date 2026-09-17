@@ -1,0 +1,269 @@
+/* =========================================
+   CADASTRO - INCLUE
+========================================= */
+
+/* =========================================
+   PÁGINA
+========================================= */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   ÁREA DO CADASTRO
+========================================= */
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* =========================================
+   SEÇÃO
+========================================= */
+
+.pagina {
+    width: 100%;
+    padding: 0;
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.pagina .card {
+    width: 80%;
+    max-width: 500px;
+
+    background-color: #FFFFFF;
+
+    padding: 35px;
+
+    margin: 0;
+
+    border-radius: 20px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   TÍTULO
+========================================= */
+
+.pagina .card h2 {
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   TEXTO
+========================================= */
+
+.pagina .card > p {
+    text-align: center;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+#contato-form {
+    width: 100%;
+    max-width: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+
+#contato-form label {
+    font-size: 15px;
+
+    font-weight: bold;
+
+    margin-top: 5px;
+}
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+#contato-form input {
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+#contato-form input:focus {
+    border: 1px solid #5FAF78;
+
+    outline: none;
+
+    box-shadow: 0 0 5px #5FAF78;
+}
+
+/* =========================================
+   TEXTO PEQUENO DO USUÁRIO
+========================================= */
+
+#contato-form small {
+    color: #555;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    margin-top: -3px;
+
+    margin-bottom: 5px;
+}
+
+/* =========================================
+   BOTÃO
+   MESMO PADRÃO DO INCLUE
+========================================= */
+
+#contato-form .btn {
+    background-color: #9FD3A8;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 20px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    margin-top: 10px;
+
+    color: black;
+}
+
+#contato-form .btn:hover {
+    background-color: #5FAF78;
+
+    color: white;
+
+    transform: scale(1.05);
+}
+
+#contato-form .btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================================
+   LINK PARA LOGIN
+========================================= */
+
+.pagina .card > p:last-child {
+    margin-top: 20px;
+
+    margin-bottom: 0;
+}
+
+.pagina .card p a {
+    color: #5FAF78;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.pagina .card p a:hover {
+    color: #7FBF90;
+
+    text-decoration: underline;
+}
+
+/* =========================================
+   RODAPÉ
+========================================= */
+
+body footer {
+    margin-top: 0;
+}
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 768px) {
+
+    main {
+        padding: 30px 15px;
+    }
+
+    .pagina .card {
+        width: 90%;
+
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 25px 10px;
+    }
+
+    .pagina .card {
+        width: 100%;
+
+        padding: 25px 20px;
+
+        border-radius: 15px;
+    }
+
+    .pagina .card h2 {
+        font-size: 25px;
+    }
+
+    .pagina .card > p {
+        font-size: 15px;
+    }
+
+    #contato-form input {
+        padding: 12px;
+    }
+
+    #contato-form .btn {
+        width: 100%;
+    }
+}

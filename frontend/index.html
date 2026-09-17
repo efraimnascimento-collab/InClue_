@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InClue</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/perfil-flutuante.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>InClue</h1>
+
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="cadastro.html">Cadastre-se</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <a href="acessibilidade.html">Acessibilidade</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =====================================
+         LADO ESQUERDO
+    ====================================== -->
+
+    <div class="left">
+
+        <h2>
+            Turismo acessível em Salvador
+        </h2>
+
+        <p>
+            O InClue facilita o acesso a locais turísticos
+            com informações sobre acessibilidade, ajudando
+            pessoas a planejarem suas experiências com
+            mais autonomia.
+        </p>
+
+
+        <!-- =================================
+             BANNER
+        ================================== -->
+
+        <div class="banner">
+
+            <button id="anterior" type="button">
+                ⟨
+            </button>
+
+
+            <img
+                id="banner-img"
+                src="img/banner1.png"
+                alt="Logo do InClue"
+            >
+
+
+            <button id="proximo" type="button">
+                ⟩
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         LADO DIREITO
+    ====================================== -->
+
+    <div class="right">
+
+        <h2 id="usuario-logado">
+            Bem-vindo!
+        </h2>
+
+
+        <p class="login-text">
+            Acesse locais acessíveis em Salvador
+        </p>
+
+
+        <!-- LOGIN -->
+
+        <a
+            href="login.html"
+            class="btn"
+            id="btn-login"
+        >
+            Fazer Login
+        </a>
+
+
+        <!-- CADASTRO -->
+
+        <a
+            href="cadastro.html"
+            class="btn"
+            id="btn-cadastro"
+        >
+            Cadastre-se
+        </a>
+
+
+        <!-- ACESSIBILIDADE -->
+
+        <a
+            href="acessibilidade.html"
+            class="btn"
+            id="btn-acessar"
+        >
+            Ver locais acessíveis
+        </a>
+
+
+        <!-- SAIR -->
+
+        <button
+            id="logout"
+            class="btn hidden"
+            type="button"
+        >
+            Sair
+        </button>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    &copy; 2026 - Projeto desenvolvido por -
+    Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
+    Mostra STEAM
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT DO INDEX
+========================================= -->
+
+<script src="js/index.js"></script>
+<script src="js/perfil-flutuante.js"></script>
+
+</body>
+</html>

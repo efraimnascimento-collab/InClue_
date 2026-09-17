@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Cadastre-se - InClue</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/cadastro.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="css/perfil-flutuante.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     CABEÇALHO
+========================================= -->
+
+<header>
+
+    <h1>
+        InClue
+    </h1>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a
+            href="cadastro.html"
+            class="active"
+        >
+            Cadastre-se
+        </a>
+
+        <a href="sobre.html">
+            Sobre
+        </a>
+
+        <a href="contato.html">
+            Contato
+        </a>
+
+        <a href="acessibilidade.html">
+            Acessibilidade
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================
+     CONTEÚDO PRINCIPAL
+========================================= -->
+
+<main>
+
+    <section class="pagina">
+
+        <div class="card">
+
+
+            <h2>
+                Crie sua conta no InClue
+            </h2>
+
+
+            <p>
+                Cadastre-se para compartilhar
+                experiências e ajudar outras pessoas
+                a encontrar locais acessíveis.
+            </p>
+
+
+            <!-- =================================
+                 FORMULÁRIO
+            ================================== -->
+
+            <form id="contato-form">
+
+
+                <!-- ==============================
+                     NOME
+                =============================== -->
+
+                <label for="nome">
+                    Nome
+                </label>
+
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite seu nome"
+                    autocomplete="name"
+                    required
+                >
+
+
+                <!-- ==============================
+                     USERNAME
+                =============================== -->
+
+                <label for="username">
+                    @Usuário
+                </label>
+
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Escolha seu @usuário"
+                    autocomplete="username"
+                    maxlength="50"
+                    required
+                >
+
+
+                <small>
+                    Seu @usuário será exibido no seu perfil
+                    e nas suas avaliações.
+                </small>
+
+
+                <!-- ==============================
+                     E-MAIL
+                =============================== -->
+
+                <label for="email">
+                    E-mail
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Digite seu e-mail"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <!-- ==============================
+                     SENHA
+                =============================== -->
+
+                <label for="senha">
+                    Senha
+                </label>
+
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="new-password"
+                    required
+                >
+
+
+                <!-- ==============================
+                     BOTÃO
+                =============================== -->
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Criar conta
+                </button>
+
+
+            </form>
+
+
+            <!-- =================================
+                 LOGIN
+            ================================== -->
+
+            <p>
+
+                Já possui uma conta?
+
+                <a href="login.html">
+                    Faça login
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     RODAPÉ
+========================================= -->
+
+<footer>
+
+    &copy; 2026 - Projeto desenvolvido por -
+    Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
+    Mostra STEAM
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/cadastro.js"></script>
+
+<script src="js/perfil-flutuante.js"></script>
+
+
+</body>
+
+</html>

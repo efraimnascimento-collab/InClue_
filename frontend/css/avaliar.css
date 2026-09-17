@@ -1,0 +1,681 @@
+/* =========================================
+   AVALIAR - INCLUE
+========================================= */
+
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+.form-container {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-container h2 {
+    margin-bottom: 10px;
+    color: #1f5138;
+}
+
+
+.introducao-avaliacao {
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+
+
+/* =========================================
+   LABELS
+========================================= */
+
+.form-container label {
+    display: block;
+    margin-top: 22px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333333;
+}
+
+
+
+/* =========================================
+   SELECTS
+========================================= */
+
+.form-container select {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 10px;
+
+    background-color: #ffffff;
+
+    color: #333333;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.form-container select:hover {
+
+    border-color: #4d956b;
+
+}
+
+
+.form-container select:focus {
+
+    border-color: #368454;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(54, 132, 84, 0.15);
+
+}
+
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.form-container textarea {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 10px;
+
+    resize: vertical;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.form-container textarea:focus {
+
+    border-color: #368454;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(54, 132, 84, 0.15);
+
+}
+
+
+
+/* =========================================
+   DROPDOWN PERSONALIZADO
+========================================= */
+
+.campo-dropdown {
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+
+.dropdown-acessibilidade {
+
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 13px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border: 1px solid #cfd8d2;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #333333;
+
+    font-size: 15px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+
+}
+
+
+.dropdown-acessibilidade:hover {
+
+    border-color: #368454;
+
+    background: #f7fbf8;
+
+}
+
+
+.dropdown-acessibilidade.aberto {
+
+    border-color: #368454;
+
+    border-bottom-left-radius: 4px;
+
+    border-bottom-right-radius: 4px;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(54, 132, 84, 0.10);
+
+}
+
+
+.seta-dropdown {
+
+    font-size: 20px;
+
+    color: #368454;
+
+    transition:
+        transform 0.2s;
+
+}
+
+
+.dropdown-acessibilidade.aberto
+.seta-dropdown {
+
+    transform: rotate(180deg);
+
+}
+
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.menu-acessibilidade {
+
+    position: absolute;
+
+    z-index: 1000;
+
+    top: calc(100% - 1px);
+
+    left: 0;
+
+    right: 0;
+
+    max-height: 420px;
+
+    overflow-y: auto;
+
+    padding: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #368454;
+
+    border-top: none;
+
+    border-radius:
+        0 0 12px 12px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.12);
+
+}
+
+
+.menu-acessibilidade[hidden] {
+
+    display: none;
+
+}
+
+
+
+/* =========================================
+   GRUPOS
+========================================= */
+
+.titulo-grupo {
+
+    margin: 12px 8px 6px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid #e4eee7;
+
+    color: #267044;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =========================================
+   OPÇÕES
+========================================= */
+
+.opcao-check {
+
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 2px 0 !important;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    font-weight: 400 !important;
+
+    cursor: pointer;
+
+    color: #333333 !important;
+
+    transition:
+        background 0.15s;
+
+}
+
+
+.opcao-check:hover {
+
+    background: #eef8f1;
+
+}
+
+
+.opcao-check input {
+
+    width: 17px;
+
+    height: 17px;
+
+    flex-shrink: 0;
+
+    accent-color: #368454;
+
+    cursor: pointer;
+
+}
+
+
+.opcao-check span {
+
+    line-height: 1.35;
+
+}
+
+
+
+/* =========================================
+   BOTÕES DO DROPDOWN
+========================================= */
+
+.acoes-dropdown {
+
+    position: sticky;
+
+    bottom: -8px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin:
+        10px -8px -8px;
+
+    padding: 12px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e4eee7;
+
+}
+
+
+.btn-secundario,
+.btn-confirmar {
+
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+}
+
+
+.btn-secundario {
+
+    border: 1px solid #ccd8d0;
+
+    background: #ffffff;
+
+    color: #555555;
+
+}
+
+
+.btn-secundario:hover {
+
+    background: #f4f4f4;
+
+}
+
+
+.btn-confirmar {
+
+    border: none;
+
+    background: #368454;
+
+    color: white;
+
+}
+
+
+.btn-confirmar:hover {
+
+    background: #2b7046;
+
+}
+
+
+
+/* =========================================
+   AJUDA
+========================================= */
+
+.ajuda-campo {
+
+    display: block;
+
+    margin-top: 6px;
+
+    color: #777777;
+
+    font-size: 12px;
+
+}
+
+
+
+/* =========================================
+   FOTO
+========================================= */
+
+.campo-foto-avaliacao {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.nome-foto {
+
+    color: #666666;
+
+    font-size: 14px;
+
+    word-break: break-word;
+
+}
+
+
+.btn-foto {
+
+    cursor: pointer;
+
+}
+
+
+
+/* =========================================
+   PUBLICAR
+========================================= */
+
+.btn-publicar {
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #368454;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+
+}
+
+
+.btn-publicar:hover {
+
+    background: #2b7046;
+
+}
+
+
+.btn-publicar:active {
+
+    transform: scale(0.99);
+
+}
+
+
+
+/* =========================================
+   MENSAGEM FINAL
+========================================= */
+
+.mensagem-final {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #555555;
+
+}
+
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 700px) {
+
+    .form-container {
+
+        margin: 20px 12px;
+
+        padding: 22px;
+
+    }
+
+
+    .menu-acessibilidade {
+
+        max-height: 360px;
+
+    }
+
+
+    .dropdown-acessibilidade {
+
+        font-size: 14px;
+
+    }
+
+}
+/* =========================================
+   CORREÇÃO DOS DROPDOWNS
+   ========================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================
+   MENU DE DEFICIÊNCIAS E IMPACTOS
+   ========================================= */
+
+#menu-deficiencias,
+#menu-impactos {
+    position: relative;
+    z-index: 1000;
+}
+
+
+/* =========================================
+   BOTÕES DOS DROPDOWNS
+   ========================================= */
+
+#btn-deficiencias,
+#btn-impactos {
+    cursor: pointer;
+}
+
+
+/* =========================================
+   BOTÕES DE CONCLUIR
+   ========================================= */
+
+#confirmar-deficiencias,
+#confirmar-impactos {
+    cursor: pointer;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: #348b57;
+
+    color: white;
+
+    padding: 10px 18px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+#confirmar-deficiencias:hover,
+#confirmar-impactos:hover {
+    background: #287347;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   BOTÕES LIMPAR
+   ========================================= */
+
+#limpar-deficiencias,
+#limpar-impactos {
+    cursor: pointer;
+
+    border-radius: 999px;
+
+    background: white;
+
+    border: 1px solid #cbd8d0;
+
+    color: #333;
+
+    padding: 10px 18px;
+
+    transition: 0.2s ease;
+}
+
+
+#limpar-deficiencias:hover,
+#limpar-impactos:hover {
+    background: #f2f7f4;
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Acessibilidade - InClue</title>
+
+
+    <!-- =========================================
+         FONTE
+    ========================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================
+         CSS
+    ========================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/acessibilidade.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/perfil-flutuante.css"
+    >
+
+
+    <!-- =========================================
+         ESTILOS DA PESQUISA E FILTRO
+    ========================================== -->
+
+    <style>
+
+        /* =========================================
+           ÁREA DA PESQUISA
+        ========================================== */
+
+        .search-box {
+
+            position: relative;
+
+            width: 100%;
+
+            z-index: 1000;
+
+        }
+
+
+        /* =========================================
+           CAMPO DE PESQUISA
+        ========================================== */
+
+        #pesquisa {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+        }
+
+
+        /* =========================================
+           FILTRO
+        ========================================== */
+
+        .filtro-container {
+
+            margin-top: 15px;
+
+            width: 100%;
+
+        }
+
+
+        .filtro-container label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: 600;
+
+            color: #176b45;
+
+        }
+
+
+        #filtro-categoria {
+
+            width: 100%;
+
+            padding: 13px 16px;
+
+            border: 2px solid #dcefe5;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            color: #333;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
+        }
+
+
+        #filtro-categoria:focus {
+
+            border-color: #3ca56f;
+
+            box-shadow:
+                0 0 0 3px rgba(
+                    60,
+                    165,
+                    111,
+                    0.12
+                );
+
+        }
+
+
+        /* =========================================
+           LISTA DE LOCAIS
+        ========================================== */
+
+        .lista-locais {
+
+            display: none;
+
+            position: absolute;
+
+            top: calc(100% + 8px);
+
+            left: 0;
+
+            width: 100%;
+
+            max-height: 340px;
+
+            overflow-y: auto;
+
+            background: #ffffff;
+
+            border: 2px solid #dcefe5;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 25px rgba(
+                    0,
+                    0,
+                    0,
+                    0.12
+                );
+
+            box-sizing: border-box;
+
+            z-index: 2000;
+
+            padding: 6px;
+
+        }
+
+
+        /* =========================================
+           LISTA ABERTA
+        ========================================== */
+
+        .lista-locais.aberta {
+
+            display: block;
+
+        }
+
+
+        /* =========================================
+           CARD DO LOCAL
+        ========================================== */
+
+        .lista-locais .card.local-card {
+
+            display: block;
+
+            background: #ffffff;
+
+            border: none;
+
+            border-bottom: 1px solid #edf3ef;
+
+            border-radius: 12px;
+
+            box-shadow: none;
+
+            margin: 0;
+
+            padding: 14px 16px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .lista-locais
+        .card.local-card:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        /* =========================================
+           HOVER
+        ========================================== */
+
+        .lista-locais
+        .card.local-card:hover {
+
+            background: #f0faf5;
+
+            transform: translateX(3px);
+
+        }
+
+
+        /* =========================================
+           NOME
+        ========================================== */
+
+        .lista-locais
+        .card.local-card h3 {
+
+            margin:
+                0 0 5px 0;
+
+            color: #176b45;
+
+            font-size: 16px;
+
+        }
+
+
+        /* =========================================
+           INFORMAÇÕES
+        ========================================== */
+
+        .lista-locais
+        .card.local-card p {
+
+            margin:
+                3px 0;
+
+            color: #666;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           NENHUM RESULTADO
+        ========================================== */
+
+        .lista-locais
+        .nenhum-resultado {
+
+            padding: 22px;
+
+            margin: 0;
+
+            text-align: center;
+
+            color: #666;
+
+        }
+
+
+        /* =========================================
+           IMAGEM DO LOCAL
+        ========================================== */
+
+        #imagem-local {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        /* =========================================
+           BARRA DE ROLAGEM
+        ========================================== */
+
+        .lista-locais::-webkit-scrollbar {
+
+            width: 8px;
+
+        }
+
+
+        .lista-locais::-webkit-scrollbar-thumb {
+
+            background: #b7dcc8;
+
+            border-radius: 10px;
+
+        }
+
+
+        .lista-locais::-webkit-scrollbar-track {
+
+            background: #f4f8f6;
+
+        }
+
+
+        /* =========================================
+           INDICAÇÃO DA CATEGORIA
+        ========================================== */
+
+        .categoria-filtro {
+
+            display: inline-block;
+
+            margin-top: 5px;
+
+            padding: 4px 9px;
+
+            background: #e8f7ef;
+
+            color: #176b45;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVIDADE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            .filtro-container {
+
+                margin-top: 12px;
+
+            }
+
+            #filtro-categoria {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     CABEÇALHO
+========================================= -->
+
+<header>
+
+    <h1>
+        InClue
+    </h1>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+
+        <a href="cadastro.html">
+            Cadastre-se
+        </a>
+
+
+        <a href="sobre.html">
+            Sobre
+        </a>
+
+
+        <a href="contato.html">
+            Contato
+        </a>
+
+
+        <a
+            href="acessibilidade.html"
+            class="active"
+        >
+            Acessibilidade
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     CONTEÚDO PRINCIPAL
+========================================= -->
+
+<main class="acessibilidade">
+
+
+    <!-- =====================================
+         BUSCA
+    ====================================== -->
+
+    <section class="busca">
+
+
+        <h2>
+            Encontre um local acessível
+        </h2>
+
+
+        <!-- =================================
+             PESQUISA
+        ================================== -->
+
+        <div class="search-box">
+
+
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="Pesquisar local..."
+                autocomplete="off"
+                aria-label="Pesquisar local"
+            >
+
+
+            <!-- =================================
+                 RESULTADOS
+            ================================== -->
+
+            <div
+                id="lista-locais"
+                class="lista-locais"
+            >
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             FILTRO POR CATEGORIA
+        ================================== -->
+
+        <div class="filtro-container">
+
+
+            <label
+                for="filtro-categoria"
+            >
+                Filtrar por categoria
+            </label>
+
+
+            <select
+                id="filtro-categoria"
+                aria-label="Filtrar locais por categoria"
+            >
+
+                <option value="">
+                    Todas as categorias
+                </option>
+
+            </select>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             MAPA
+        ================================== -->
+
+        <div class="mapa">
+
+
+            <iframe
+                id="mapa-local"
+                src="https://www.google.com/maps?q=Salvador+BA&output=embed"
+                loading="lazy"
+                title="Mapa do local"
+            >
+            </iframe>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         DETALHES DO LOCAL
+    ====================================== -->
+
+    <section class="detalhes">
+
+
+        <!-- =================================
+             IMAGEM
+        ================================== -->
+
+        <div class="imagem-container">
+
+
+            <img
+                id="imagem-local"
+                src="img/inclue.png"
+                alt="InClue"
+                class="imagem-inclue"
+            >
+
+
+        </div>
+
+
+
+        <!-- =================================
+             NOME
+        ================================== -->
+
+        <h2 id="nome-local">
+
+            Selecione um local
+
+        </h2>
+
+
+
+        <!-- =================================
+             CATEGORIA
+        ================================== -->
+
+        <p id="categoria-local">
+
+        </p>
+
+
+
+        <!-- =================================
+             ENDEREÇO
+        ================================== -->
+
+        <p>
+
+            <strong>
+                📍 Endereço:
+            </strong>
+
+
+            <span id="endereco-local">
+                -
+            </span>
+
+        </p>
+
+
+
+        <!-- =================================
+             CIDADE
+        ================================== -->
+
+        <p>
+
+            <strong>
+                🏙️ Cidade:
+            </strong>
+
+
+            <span id="cidade-local">
+                -
+            </span>
+
+        </p>
+
+
+
+        <!-- =================================
+             DESCRIÇÃO
+        ================================== -->
+
+        <div class="descricao-local">
+
+
+            <h3>
+                Sobre o local
+            </h3>
+
+
+            <p id="descricao">
+
+                Selecione um local para
+                visualizar suas informações.
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             ACESSIBILIDADE
+        ================================== -->
+
+        <div class="recursos">
+
+
+            <h3>
+                ♿ Recursos de acessibilidade
+            </h3>
+
+
+            <div id="acessibilidade-local">
+
+                Selecione um local.
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             AÇÕES
+        ================================== -->
+
+        <div class="acoes">
+
+
+            <!-- FAVORITO -->
+
+            <button
+                class="btn"
+                id="botao-favorito"
+                type="button"
+                disabled
+            >
+
+                ♡ Favoritar
+
+            </button>
+
+
+
+            <!-- AVALIAÇÕES -->
+
+            <button
+                class="btn"
+                id="botao-avaliacoes"
+                type="button"
+                disabled
+            >
+
+                ⭐ Ver avaliações
+
+            </button>
+
+
+
+            <!-- FAZER AVALIAÇÃO -->
+
+            <button
+                class="btn"
+                id="botao-avaliar"
+                type="button"
+                disabled
+            >
+
+                ✍️ Fazer avaliação
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     RODAPÉ
+========================================= -->
+
+<footer>
+
+    &copy; 2026 - Projeto desenvolvido por -
+    Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
+    Mostra STEAM
+
+</footer>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script src="js/acessibilidade.js"></script>
+
+<script src="js/perfil-flutuante.js"></script>
+
+
+</body>
+
+</html>
