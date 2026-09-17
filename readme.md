@@ -23,8 +23,6 @@ Por meio da plataforma, é possível encontrar locais, visualizar avaliações, 
 
 ## Equipe InClue
 
-Os integrantes da equipe, organizados em ordem alfabética:
-
 - Efraim Nascimento
 - Grazielle Miranda
 - Júlia Abreu
