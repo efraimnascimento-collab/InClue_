@@ -148,11 +148,14 @@ O MySQL é utilizado para armazenar as informações relacionadas aos usuários,
 O projeto está dividido principalmente entre **frontend**, **backend** e **banco de dados**.
 
 ```text
+```text
+```text
 InClue/
 │
 ├── backend/
 │   ├── controllers/
 │   │   ├── avaliacaoController.js
+│   │   ├── contatoController.js
 │   │   ├── curtidaController.js
 │   │   ├── favoritoController.js
 │   │   ├── localController.js
@@ -170,16 +173,21 @@ InClue/
 │   │
 │   ├── routes/
 │   │   ├── avaliacaoRoutes.js
+│   │   ├── contatoRoutes.js
 │   │   ├── curtidaRoutes.js
 │   │   ├── favoritoRoutes.js
 │   │   ├── localRoutes.js
 │   │   └── usuarioRoutes.js
+│   │
+│   ├── services/
+│   │   └── emailService.js
 │   │
 │   ├── uploads/
 │   │   ├── avaliacoes/
 │   │   └── perfis/
 │   │
 │   ├── node_modules/
+│   ├── .env
 │   ├── package-lock.json
 │   ├── package.json
 │   └── server.js
@@ -228,11 +236,15 @@ InClue/
 │   ├── avaliar.html
 │   ├── cadastro.html
 │   ├── contato.html
+│   ├── esqueci-senha.html
 │   ├── favoritos.html
 │   ├── index.html
 │   ├── login.html
+│   ├── nova-senha.html
 │   ├── perfil.html
 │   └── sobre.html
 │
 ├── .gitignore
 └── README.md
+```                       
+```
