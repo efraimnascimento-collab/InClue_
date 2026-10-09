@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci minha senha | InClue</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            padding: 35px;
+            background: white;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        h1 {
+            margin-top: 0;
+            text-align: center;
+            color: #267342;
+            font-size: 27px;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            outline: 2px solid #267342;
+            border-color: transparent;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #267342;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e5c34;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #mensagem {
+            overflow-wrap: anywhere;
+            font-size: 14px;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #267342;
+            text-decoration: none;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Esqueceu sua senha?</h1>
+
+        <p>
+            Digite o e-mail cadastrado na sua conta.
+            Enviaremos um link para você criar uma nova senha.
+        </p>
+
+        <form id="formRecuperacao">
+            <label for="email">E-mail cadastrado</label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Digite seu e-mail"
+                autocomplete="email"
+                required
+            >
+
+            <button type="submit" id="botaoEnviar">
+                Enviar link de recuperação
+            </button>
+
+            <p id="mensagem" role="status" aria-live="polite"></p>
+        </form>
+
+        <a class="voltar" href="login.html">
+            Voltar para o login
+        </a>
+    </main>
+
+    <script>
+        const formulario = document.getElementById("formRecuperacao");
+        const campoEmail = document.getElementById("email");
+        const mensagem = document.getElementById("mensagem");
+        const botao = document.getElementById("botaoEnviar");
+
+        formulario.addEventListener("submit", async function(evento) {
+            evento.preventDefault();
+
+            mensagem.textContent = "";
+            botao.disabled = true;
+            botao.textContent = "Enviando...";
+
+            try {
+                const resposta = await fetch(
+                    "http://localhost:3000/recuperar-senha",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            email: campoEmail.value.trim()
+                        })
+                    }
+                );
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(
+                        dados.mensagem ||
+                        "Não foi possível processar a solicitação."
+                    );
+                }
+
+                mensagem.textContent =
+                    dados.mensagem ||
+                    "Se o e-mail estiver cadastrado, você receberá instruções para recuperar sua senha.";
+
+                mensagem.style.color = "#267342";
+                formulario.reset();
+
+            } catch (erro) {
+                mensagem.textContent =
+                    erro.message === "Failed to fetch"
+                        ? "Não foi possível conectar ao servidor. Verifique se o backend está rodando."
+                        : erro.message;
+
+                mensagem.style.color = "#c62828";
+
+            } finally {
+                botao.disabled = false;
+                botao.textContent = "Enviar link de recuperação";
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,166 +1,86 @@
-// =========================================
-// ROTAS DE USUÁRIO - INCLUE
-// =========================================
 
-const express =
-    require("express");
-
+const express = require("express");
 const {
     listarUsuarios,
     cadastrarUsuario,
     login,
     buscarPerfil,
     atualizarPerfil,
-    atualizarFotoPerfil
-} =
-    require("../controllers/usuarioController");
+    atualizarFotoPerfil,
+    solicitarRecuperacaoSenha,
+    redefinirSenha
+} = require("../controllers/usuarioController");
 
-const multer =
-    require("multer");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 
-const path =
-    require("path");
-
-const fs =
-    require("fs");
-
-
-const router =
-    express.Router();
-
+const router = express.Router();
 
 // =========================================
 // PASTA DE UPLOADS
 // =========================================
 
-const pastaUploads =
-    path.join(
-        __dirname,
-        "..",
-        "uploads",
-        "perfis"
-    );
-
+const pastaUploads = path.join(
+    __dirname,
+    "..",
+    "uploads",
+    "perfis"
+);
 
 if (!fs.existsSync(pastaUploads)) {
-
-    fs.mkdirSync(
-        pastaUploads,
-        {
-            recursive: true
-        }
-    );
-
+    fs.mkdirSync(pastaUploads, {
+        recursive: true
+    });
 }
-
 
 // =========================================
 // CONFIGURAÇÃO MULTER
 // =========================================
 
-const armazenamento =
-    multer.diskStorage({
+const armazenamento = multer.diskStorage({
+    destination: function (req, arquivo, callback) {
+        callback(null, pastaUploads);
+    },
 
-        destination:
-            function (
-                req,
-                arquivo,
-                callback
-            ) {
+    filename: function (req, arquivo, callback) {
+        const extensao = path.extname(
+            arquivo.originalname
+        ).toLowerCase();
 
-                callback(
-                    null,
-                    pastaUploads
-                );
+        const nomeArquivo =
+            `perfil-${req.params.id}-${Date.now()}${extensao}`;
 
-            },
+        callback(null, nomeArquivo);
+    }
+});
 
+const upload = multer({
+    storage: armazenamento,
 
-        filename:
-            function (
-                req,
-                arquivo,
-                callback
-            ) {
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    },
 
-                const extensao =
-                    path.extname(
-                        arquivo.originalname
-                    ).toLowerCase();
+    fileFilter: function (req, arquivo, callback) {
+        const tiposPermitidos = [
+            "image/jpeg",
+            "image/jpg",
+            "image/png",
+            "image/webp"
+        ];
 
-
-                const nomeArquivo =
-                    `perfil-${req.params.id}-${Date.now()}${extensao}`;
-
-
-                callback(
-                    null,
-                    nomeArquivo
-                );
-
-            }
-
-    });
-
-
-const upload =
-    multer({
-
-        storage:
-            armazenamento,
-
-        limits: {
-
-            fileSize:
-                5 * 1024 * 1024
-
-        },
-
-        fileFilter:
-            function (
-                req,
-                arquivo,
-                callback
-            ) {
-
-                const tiposPermitidos = [
-
-                    "image/jpeg",
-
-                    "image/jpg",
-
-                    "image/png",
-
-                    "image/webp"
-
-                ];
-
-
-                if (
-                    tiposPermitidos.includes(
-                        arquivo.mimetype
-                    )
-                ) {
-
-                    callback(
-                        null,
-                        true
-                    );
-
-                } else {
-
-                    callback(
-                        new Error(
-                            "Apenas imagens JPG, JPEG, PNG ou WEBP são permitidas."
-                        )
-                    );
-
-                }
-
-            }
-
-    });
-
+        if (tiposPermitidos.includes(arquivo.mimetype)) {
+            callback(null, true);
+        } else {
+            callback(
+                new Error(
+                    "Apenas imagens JPG, JPEG, PNG ou WEBP são permitidas."
+                )
+            );
+        }
+    }
+});
 
 // =========================================
 // LISTAR USUÁRIOS
@@ -171,16 +91,14 @@ router.get(
     listarUsuarios
 );
 
-
 // =========================================
-// CADASTRAR
+// CADASTRAR USUÁRIO
 // =========================================
 
 router.post(
     "/usuarios",
     cadastrarUsuario
 );
-
 
 // =========================================
 // LOGIN
@@ -191,7 +109,6 @@ router.post(
     login
 );
 
-
 // =========================================
 // BUSCAR PERFIL
 // =========================================
@@ -200,7 +117,6 @@ router.get(
     "/usuarios/:id/perfil",
     buscarPerfil
 );
-
 
 // =========================================
 // ATUALIZAR NOME E USERNAME
@@ -211,9 +127,8 @@ router.put(
     atualizarPerfil
 );
 
-
 // =========================================
-// ATUALIZAR FOTO
+// ATUALIZAR FOTO DE PERFIL
 // =========================================
 
 router.post(
@@ -222,9 +137,26 @@ router.post(
     atualizarFotoPerfil
 );
 
+// =========================================
+// SOLICITAR RECUPERAÇÃO DE SENHA
+// =========================================
+
+router.post(
+    "/recuperar-senha",
+    solicitarRecuperacaoSenha
+);
 
 // =========================================
-// EXPORTAR
+// REDEFINIR SENHA
+// =========================================
+
+router.post(
+    "/redefinir-senha",
+    redefinirSenha
+);
+
+// =========================================
+// EXPORTAR ROTAS
 // =========================================
 
 module.exports = router;

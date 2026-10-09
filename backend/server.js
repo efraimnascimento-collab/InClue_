@@ -1,15 +1,17 @@
+
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-
 const connection = require('./database/connection');
 
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const localRoutes = require('./routes/localRoutes');
 const avaliacaoRoutes = require('./routes/avaliacaoRoutes');
 const favoritoRoutes = require('./routes/favoritoRoutes');
-
-// NOVA ROTA - CURTIDAS DAS AVALIAÇÕES
 const curtidaRoutes = require('./routes/curtidaRoutes');
+
+const contatoRoutes = require('./routes/contatoRoutes');
 
 const app = express();
 
@@ -44,8 +46,12 @@ app.use(localRoutes);
 app.use(avaliacaoRoutes);
 
 app.use('/', favoritoRoutes);
-// NOVA ROTA
-app.use("/curtidas", curtidaRoutes);
+
+// ROTA - CURTIDAS DAS AVALIAÇÕES
+app.use('/curtidas', curtidaRoutes);
+
+// ROTA - FORMULÁRIO DE CONTATO
+app.use(contatoRoutes);
 
 
 // =========================================
@@ -53,11 +59,9 @@ app.use("/curtidas", curtidaRoutes);
 // =========================================
 
 app.get('/', (req, res) => {
-
     res.json({
         mensagem: 'API do InClue funcionando!'
     });
-
 });
 
 
@@ -66,40 +70,23 @@ app.get('/', (req, res) => {
 // =========================================
 
 app.get('/teste-banco', async (req, res) => {
-
     try {
-
-        const [resultado] =
-            await connection.query(
-                'SELECT 1 AS teste'
-            );
+        const [resultado] = await connection.query(
+            'SELECT 1 AS teste'
+        );
 
         res.status(200).json({
-
-            mensagem:
-                'Conexão com o banco funcionando!',
-
-            resultado:
-                resultado
-
+            mensagem: 'Conexão com o banco funcionando!',
+            resultado: resultado
         });
 
     } catch (erro) {
-
-        console.error(
-            'Erro no banco:',
-            erro
-        );
+        console.error('Erro no banco:', erro);
 
         res.status(500).json({
-
-            mensagem:
-                'Erro ao conectar com o banco de dados'
-
+            mensagem: 'Erro ao conectar com o banco de dados'
         });
-
     }
-
 });
 
 
@@ -107,12 +94,8 @@ app.get('/teste-banco', async (req, res) => {
 // INICIAR SERVIDOR
 // =========================================
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-
-    console.log(
-        `Servidor rodando em http://localhost:${PORT}`
-    );
-
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

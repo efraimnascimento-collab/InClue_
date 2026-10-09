@@ -1,137 +1,60 @@
-// =========================================
-// CONTATO - INCLUE
-// =========================================
+const formulario = document.getElementById("contato-form");
+const retorno = document.getElementById("retorno");
+const botaoEnviar = formulario.querySelector('button[type="submit"]');
 
-const formulario =
-    document.getElementById(
-        "contato-form"
-    );
+formulario.addEventListener("submit", async function (evento) {
+    evento.preventDefault();
 
-const retorno =
-    document.getElementById(
-        "retorno"
-    );
+    const nome = document.getElementById("contato-nome").value.trim();
+    const email = document.getElementById("contato-email").value.trim();
+    const mensagem = document.getElementById("mensagem-texto").value.trim();
 
+    if (!nome || !email || !mensagem) {
+        retorno.textContent = "Preencha todos os campos.";
+        return;
+    }
 
-// =========================================
-// ENVIO DO FORMULÁRIO
-// =========================================
+    if (mensagem.length > 5000) {
+        retorno.textContent = "A mensagem deve ter no máximo 5.000 caracteres.";
+        return;
+    }
 
-formulario.addEventListener(
-    "submit",
-    function (evento) {
+    retorno.textContent = "";
+    botaoEnviar.disabled = true;
+    botaoEnviar.textContent = "Enviando...";
 
-        evento.preventDefault();
+    try {
+        const resposta = await fetch("http://localhost:3000/contato", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome,
+                email,
+                mensagem
+            })
+        });
 
+        const dados = await resposta.json();
 
-        // =====================================
-        // PEGAR DADOS
-        // =====================================
-
-        const nome =
-            document
-                .getElementById(
-                    "contato-nome"
-                )
-                .value
-                .trim();
-
-
-        const email =
-            document
-                .getElementById(
-                    "contato-email"
-                )
-                .value
-                .trim();
-
-
-        const mensagem =
-            document
-                .getElementById(
-                    "mensagem-texto"
-                )
-                .value
-                .trim();
-
-
-        // =====================================
-        // VALIDAR
-        // =====================================
-
-        if (
-            !nome ||
-            !email ||
-            !mensagem
-        ) {
-
-            retorno.innerText =
-                "Preencha todos os campos.";
-
-            return;
-
+        if (!resposta.ok) {
+            throw new Error(dados.mensagem || "Não foi possível enviar sua mensagem.");
         }
 
-
-        // =====================================
-        // CRIAR ASSUNTO
-        // =====================================
-
-        const assunto =
-            encodeURIComponent(
-                "Contato pelo site InClue"
-            );
-
-
-        // =====================================
-        // CRIAR CORPO DO E-MAIL
-        // =====================================
-
-        const corpo =
-            encodeURIComponent(
-
-                `Olá, equipe InClue!
-
-Nome: ${nome}
-
-E-mail: ${email}
-
-Mensagem:
-
-${mensagem}
-
---------------------------------
-Mensagem enviada pelo site InClue.
-`
-
-            );
-
-
-        // =====================================
-        // ABRIR E-MAIL
-        // =====================================
-
-        const endereco =
-            `mailto:inclue.suporte@gmail.com?subject=${assunto}&body=${corpo}`;
-
-
-        window.location.href =
-            endereco;
-
-
-        // =====================================
-        // MENSAGEM
-        // =====================================
-
-        retorno.innerText =
-            "Abrindo seu aplicativo de e-mail...";
-
-
-        // =====================================
-        // LIMPAR FORMULÁRIO
-        // =====================================
-
+        retorno.textContent = dados.mensagem || "Mensagem enviada com sucesso!";
         formulario.reset();
 
+    } catch (erro) {
+        console.error("Erro ao enviar mensagem:", erro);
+
+        retorno.textContent =
+            erro.message === "Failed to fetch"
+                ? "Não foi possível conectar ao servidor. Tente novamente."
+                : erro.message || "Ocorreu um erro ao enviar a mensagem.";
+
+    } finally {
+        botaoEnviar.disabled = false;
+        botaoEnviar.textContent = "Enviar mensagem";
     }
-);
+});
