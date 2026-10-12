@@ -147,7 +147,7 @@ O MySQL é utilizado para armazenar as informações relacionadas aos usuários,
 
 O projeto está dividido principalmente entre **frontend**, **backend** e **banco de dados**.
 
-
+´´´text
 InClue/
 │
 ├── backend/
