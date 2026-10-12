@@ -8,87 +8,46 @@
 // =========================================
 
 const pesquisa =
-    document.getElementById(
-        "pesquisa"
-    );
-
+    document.getElementById("pesquisa");
 
 const listaLocais =
-    document.getElementById(
-        "lista-locais"
-    );
-
+    document.getElementById("lista-locais");
 
 const filtroCategoria =
-    document.getElementById(
-        "filtro-categoria"
-    );
-
+    document.getElementById("filtro-categoria");
 
 const mapa =
-    document.getElementById(
-        "mapa-local"
-    );
-
+    document.getElementById("mapa-local");
 
 const imagem =
-    document.getElementById(
-        "imagem-local"
-    );
-
+    document.getElementById("imagem-local");
 
 const nomeLocal =
-    document.getElementById(
-        "nome-local"
-    );
-
+    document.getElementById("nome-local");
 
 const categoriaLocal =
-    document.getElementById(
-        "categoria-local"
-    );
-
+    document.getElementById("categoria-local");
 
 const enderecoLocal =
-    document.getElementById(
-        "endereco-local"
-    );
-
+    document.getElementById("endereco-local");
 
 const cidadeLocal =
-    document.getElementById(
-        "cidade-local"
-    );
-
+    document.getElementById("cidade-local");
 
 const descricaoLocal =
-    document.getElementById(
-        "descricao"
-    );
-
+    document.getElementById("descricao");
 
 const acessibilidadeLocal =
-    document.getElementById(
-        "acessibilidade-local"
-    );
-
+    document.getElementById("acessibilidade-local");
 
 const botaoFavorito =
-    document.getElementById(
-        "botao-favorito"
-    );
-
+    document.getElementById("botao-favorito");
 
 const botaoAvaliacoes =
-    document.getElementById(
-        "botao-avaliacoes"
-    );
-
+    document.getElementById("botao-avaliacoes");
 
 const botaoAvaliar =
-    document.getElementById(
-        "botao-avaliar"
-    );
+    document.getElementById("botao-avaliar");
 
 
 // =========================================
@@ -103,26 +62,11 @@ let localAtual = null;
 // =========================================
 // LOCAIS QUE NÃO DEVEM TER IMAGEM PRÓPRIA
 // =========================================
-//
-// Esses três locais são tratados como
-// duplicados de outros pontos já cadastrados.
-//
-// Por isso NÃO precisamos dos arquivos:
-//
-// igreja-do-senhor-do-bonfim.png
-// forte-de-santo-antonio-da-barra.png
-// casa-de-jorge-amado.png
-//
-// =========================================
 
 const locaisSemImagemPropria = [
-
     "igreja do senhor do bonfim",
-
     "forte de santo antonio da barra",
-
     "casa de jorge amado"
-
 ];
 
 
@@ -130,40 +74,19 @@ const locaisSemImagemPropria = [
 // CONVERTER NOME EM NOME DE ARQUIVO
 // =========================================
 
-function transformarNomeEmArquivo(
-    nome
-) {
+function transformarNomeEmArquivo(nome) {
 
     if (!nome) {
-
         return "";
-
     }
 
-
     return nome
-
         .normalize("NFD")
-
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
-
         .trim()
-
-        .replace(
-            /[^a-z0-9]+/g,
-            "-"
-        )
-
-        .replace(
-            /^-+|-+$/g,
-            ""
-        )
-
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
         + ".png";
 
 }
@@ -173,115 +96,47 @@ function transformarNomeEmArquivo(
 // OBTER IMAGEM DO LOCAL
 // =========================================
 
-function obterImagemLocal(
-    local
-) {
+function obterImagemLocal(local) {
 
     if (!local) {
-
         return null;
-
     }
 
+    const nomeNormalizado = (local.nome || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
 
-    const nomeNormalizado =
-        (local.nome || "")
-            .normalize("NFD")
-            .replace(
-                /[\u0300-\u036f]/g,
-                ""
-            )
-            .toLowerCase()
-            .trim();
-
-
-    // =====================================
-    // LOCAIS SEM IMAGEM PRÓPRIA
-    // =====================================
-
-    if (
-        locaisSemImagemPropria.includes(
-            nomeNormalizado
-        )
-    ) {
-
+    if (locaisSemImagemPropria.includes(nomeNormalizado)) {
         return null;
-
     }
 
-
-    // =====================================
-    // IMAGEM CADASTRADA NO BANCO
-    // =====================================
-
-    if (
-        local.imagem &&
-        local.imagem.trim() !== ""
-    ) {
-
-        let caminho =
-            local.imagem.trim();
-
-
-        // Caminho completo
+    if (local.imagem && local.imagem.trim() !== "") {
+        const caminho = local.imagem.trim();
 
         if (
-            caminho.startsWith(
-                "http://"
-            ) ||
-
-            caminho.startsWith(
-                "https://"
-            ) ||
-
+            caminho.startsWith("http://") ||
+            caminho.startsWith("https://") ||
             caminho.startsWith("/")
         ) {
-
             return caminho;
-
         }
 
-
-        // Caminho contendo pasta
-
-        if (
-            caminho.includes("/")
-        ) {
-
+        if (caminho.includes("/")) {
             return caminho;
-
         }
 
-
-        return (
-            "img/locais/" +
-            caminho
-        );
-
+        return "img/locais/" + caminho;
     }
 
-
-    // =====================================
-    // IMAGEM AUTOMÁTICA PELO NOME
-    // =====================================
-
-    const nomeArquivo =
-        transformarNomeEmArquivo(
-            local.nome
-        );
-
+    const nomeArquivo = transformarNomeEmArquivo(local.nome);
 
     if (!nomeArquivo) {
-
         return null;
-
     }
 
-
-    return (
-        "img/locais/" +
-        nomeArquivo
-    );
+    return "img/locais/" + nomeArquivo;
 
 }
 
@@ -293,27 +148,13 @@ function obterImagemLocal(
 function mostrarImagemPadrao() {
 
     if (!imagem) {
-
         return;
-
     }
 
-
-    imagem.onerror =
-        null;
-
-
-    imagem.src =
-        "img/inclue.png";
-
-
-    imagem.alt =
-        "InClue";
-
-
-    imagem.classList.add(
-        "imagem-inclue"
-    );
+    imagem.onerror = null;
+    imagem.src = "img/inclue.png";
+    imagem.alt = "InClue";
+    imagem.classList.add("imagem-inclue");
 
 }
 
@@ -322,64 +163,27 @@ function mostrarImagemPadrao() {
 // IMAGEM DO LOCAL
 // =========================================
 
-function mostrarImagemLocal(
-    local
-) {
+function mostrarImagemLocal(local) {
 
-    if (
-        !imagem ||
-        !local
-    ) {
-
+    if (!imagem || !local) {
         return;
-
     }
 
-
-    const caminhoImagem =
-        obterImagemLocal(
-            local
-        );
-
+    const caminhoImagem = obterImagemLocal(local);
 
     if (!caminhoImagem) {
-
         mostrarImagemPadrao();
-
         return;
-
     }
 
+    imagem.onerror = function() {
+        console.warn("Imagem não encontrada:", caminhoImagem);
+        mostrarImagemPadrao();
+    };
 
-    imagem.onerror =
-        function() {
-
-            console.warn(
-                "Imagem não encontrada:",
-                caminhoImagem
-            );
-
-
-            mostrarImagemPadrao();
-
-        };
-
-
-    imagem.src =
-        caminhoImagem;
-
-
-    imagem.alt =
-        "Imagem de " +
-        (
-            local.nome ||
-            "local"
-        );
-
-
-    imagem.classList.remove(
-        "imagem-inclue"
-    );
+    imagem.src = caminhoImagem;
+    imagem.alt = "Imagem de " + (local.nome || "local");
+    imagem.classList.remove("imagem-inclue");
 
 }
 
@@ -387,79 +191,31 @@ function mostrarImagemLocal(
 // =========================================
 // ADICIONAR FORTE DE SÃO MARCELO
 // =========================================
-//
-// IMPORTANTE:
-// Se ele já estiver no MySQL,
-// não será duplicado.
-//
-// Se ainda não estiver no banco,
-// ele aparece no catálogo.
-//
-// Para favoritos/avaliações,
-// o ideal é depois cadastrar
-// oficialmente no MySQL.
-//
-// =========================================
 
 function adicionarForteSaoMarcelo() {
 
-    const existe =
-        locais.some(
-            local => {
+    const existe = locais.some(local => {
+        const nome = (local.nome || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .trim();
 
-                const nome =
-                    (
-                        local.nome ||
-                        ""
-                    )
-                    .normalize("NFD")
-                    .replace(
-                        /[\u0300-\u036f]/g,
-                        ""
-                    )
-                    .toLowerCase()
-                    .trim();
-
-
-                return (
-                    nome ===
-                    "forte de sao marcelo"
-                );
-
-            }
-        );
-
+        return nome === "forte de sao marcelo";
+    });
 
     if (existe) {
-
         return;
-
     }
 
-
     locais.push({
-
-        id:
-            "forte-sao-marcelo",
-
-        nome:
-            "Forte de São Marcelo",
-
-        categoria:
-            "História",
-
-        endereco:
-            "Baía de Todos-os-Santos, Salvador - BA",
-
-        cidade:
-            "Salvador",
-
-        descricao:
-            "Fortificação histórica localizada na Baía de Todos-os-Santos, conhecida como Forte de São Marcelo.",
-
-        acessibilidade:
-            "Verifique as condições de acessibilidade antes da visita."
-
+        id: "forte-sao-marcelo",
+        nome: "Forte de São Marcelo",
+        categoria: "História",
+        endereco: "Baía de Todos-os-Santos, Salvador - BA",
+        cidade: "Salvador",
+        descricao: "Fortificação histórica localizada na Baía de Todos-os-Santos, conhecida como Forte de São Marcelo.",
+        acessibilidade: "Verifique as condições de acessibilidade antes da visita."
     });
 
 }
@@ -472,86 +228,27 @@ function adicionarForteSaoMarcelo() {
 function carregarCategorias() {
 
     if (!filtroCategoria) {
-
         return;
-
     }
 
-
-    // Limpar opções
-
     filtroCategoria.innerHTML = `
-
-        <option value="">
-            Todas as categorias
-        </option>
-
+        <option value="">Todas as categorias</option>
     `;
 
+    const categorias = locais
+        .map(local => (local.categoria || "").trim())
+        .filter(categoria => categoria !== "");
 
-    const categorias =
-        locais
+    const categoriasUnicas = [...new Set(categorias)];
 
-            .map(
-                local =>
-                    (
-                        local.categoria ||
-                        ""
-                    ).trim()
-            )
+    categoriasUnicas.sort((a, b) => a.localeCompare(b, "pt-BR"));
 
-            .filter(
-                categoria =>
-                    categoria !== ""
-            );
-
-
-    // Remover duplicadas
-
-    const categoriasUnicas =
-        [
-            ...new Set(
-                categorias
-            )
-        ];
-
-
-    // Ordenar
-
-    categoriasUnicas.sort(
-        (a, b) =>
-            a.localeCompare(
-                b,
-                "pt-BR"
-            )
-    );
-
-
-    // Criar opções
-
-    categoriasUnicas.forEach(
-        categoria => {
-
-            const opcao =
-                document.createElement(
-                    "option"
-                );
-
-
-            opcao.value =
-                categoria;
-
-
-            opcao.textContent =
-                categoria;
-
-
-            filtroCategoria.appendChild(
-                opcao
-            );
-
-        }
-    );
+    categoriasUnicas.forEach(categoria => {
+        const opcao = document.createElement("option");
+        opcao.value = categoria;
+        opcao.textContent = categoria;
+        filtroCategoria.appendChild(opcao);
+    });
 
 }
 
@@ -582,35 +279,18 @@ async function carregarLocais() {
         locais =
             await resposta.json();
 
-
         if (!Array.isArray(locais)) {
-
             locais = [];
-
         }
 
-
-        // =====================================
-        // ADICIONAR FORTE DE SÃO MARCELO
-        // =====================================
-
         adicionarForteSaoMarcelo();
-
-
-        // =====================================
-        // CARREGAR CATEGORIAS
-        // =====================================
-
         carregarCategorias();
 
-
         // =====================================
-        // LIMPAR LISTA
+        // NÃO MOSTRAR A LISTA AUTOMATICAMENTE
         // =====================================
 
-        listaLocais.innerHTML =
-            "";
-
+        listaLocais.innerHTML = "";
 
         listaLocais.classList.remove(
             "aberta"
@@ -618,26 +298,22 @@ async function carregarLocais() {
 
 
         // =====================================
-        // IMAGEM PADRÃO
+        // MOSTRAR IMAGEM PADRÃO
         // =====================================
 
         mostrarImagemPadrao();
 
 
         // =====================================
-        // NENHUM LOCAL
+        // CASO NÃO TENHA LOCAIS
         // =====================================
 
-        if (
-            locais.length === 0
-        ) {
+        if (locais.length === 0) {
 
             listaLocais.innerHTML = `
-
                 <p class="nenhum-resultado">
                     Nenhum local cadastrado.
                 </p>
-
             `;
 
         }
@@ -680,9 +356,12 @@ function mostrarListaLocais(
     locaisParaMostrar
 ) {
 
-    listaLocais.innerHTML =
-        "";
+    listaLocais.innerHTML = "";
 
+
+    // =====================================
+    // NENHUM RESULTADO
+    // =====================================
 
     if (
         !locaisParaMostrar ||
@@ -697,11 +376,9 @@ function mostrarListaLocais(
 
         `;
 
-
         listaLocais.classList.add(
             "aberta"
         );
-
 
         return;
 
@@ -716,9 +393,7 @@ function mostrarListaLocais(
         local => {
 
             const card =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
 
             card.className =
@@ -726,30 +401,11 @@ function mostrarListaLocais(
 
 
             card.innerHTML = `
-
-                <h3>
-                    📍 ${
-                        local.nome ||
-                        "Local sem nome"
-                    }
-                </h3>
-
-                <p>
-                    🏙️ ${
-                        local.cidade ||
-                        "Salvador"
-                    }
-                </p>
-
-                <span
-                    class="categoria-filtro"
-                >
-                    🏷️ ${
-                        local.categoria ||
-                        "Ponto turístico"
-                    }
+                <h3>📍 ${local.nome || "Local sem nome"}</h3>
+                <p>🏙️ ${local.cidade || "Salvador"}</p>
+                <span class="categoria-filtro">
+                    🏷️ ${local.categoria || "Ponto turístico"}
                 </span>
-
             `;
 
 
@@ -759,18 +415,15 @@ function mostrarListaLocais(
 
             card.addEventListener(
                 "click",
-                function() {
+                () => {
 
-                    selecionarLocal(
-                        local
-                    );
+                    selecionarLocal(local);
 
-
+                    // Coloca o nome no campo
                     pesquisa.value =
-                        local.nome ||
-                        "";
+                        local.nome || "";
 
-
+                    // Fecha a lista
                     listaLocais.classList.remove(
                         "aberta"
                     );
@@ -779,13 +432,15 @@ function mostrarListaLocais(
             );
 
 
-            listaLocais.appendChild(
-                card
-            );
+            listaLocais.appendChild(card);
 
         }
     );
 
+
+    // =====================================
+    // ABRIR LISTA
+    // =====================================
 
     listaLocais.classList.add(
         "aberta"
@@ -798,19 +453,9 @@ function mostrarListaLocais(
 // SELECIONAR LOCAL
 // =========================================
 
-function selecionarLocal(
-    local
-) {
+function selecionarLocal(local) {
 
-    if (!local) {
-
-        return;
-
-    }
-
-
-    localAtual =
-        local;
+    localAtual = local;
 
 
     // =====================================
@@ -828,8 +473,7 @@ function selecionarLocal(
 
     categoriaLocal.innerText =
         local.categoria
-            ? "🏷️ " +
-              local.categoria
+            ? "🏷️ " + local.categoria
             : "";
 
 
@@ -873,9 +517,7 @@ function selecionarLocal(
     // IMAGEM
     // =====================================
 
-    mostrarImagemLocal(
-        local
-    );
+    mostrarImagemLocal(local);
 
 
     // =====================================
@@ -885,24 +527,11 @@ function selecionarLocal(
     const enderecoMapa =
         encodeURIComponent(
 
-            (
-                local.nome ||
-                ""
-            ) +
-
+            (local.nome || "") +
             " " +
-
-            (
-                local.endereco ||
-                ""
-            ) +
-
+            (local.endereco || "") +
             " " +
-
-            (
-                local.cidade ||
-                "Salvador"
-            )
+            (local.cidade || "Salvador")
 
         );
 
@@ -918,10 +547,8 @@ function selecionarLocal(
     botaoFavorito.disabled =
         false;
 
-
     botaoAvaliacoes.disabled =
         false;
-
 
     botaoAvaliar.disabled =
         false;
@@ -940,9 +567,7 @@ function selecionarLocal(
 // MOSTRAR ACESSIBILIDADE
 // =========================================
 
-function mostrarAcessibilidade(
-    texto
-) {
+function mostrarAcessibilidade(texto) {
 
     if (!texto) {
 
@@ -962,25 +587,18 @@ function mostrarAcessibilidade(
 
     const recursos =
         texto
-
-            .split(
-                /[,;\n]/
-            )
-
+            .split(/[,;\n]/)
             .map(
                 item =>
                     item.trim()
             )
-
             .filter(
                 item =>
                     item
             );
 
 
-    if (
-        recursos.length === 0
-    ) {
+    if (recursos.length === 0) {
 
         acessibilidadeLocal.innerText =
             texto;
@@ -991,35 +609,27 @@ function mostrarAcessibilidade(
 
 
     const lista =
-        document.createElement(
-            "ul"
-        );
+        document.createElement("ul");
 
 
     recursos.forEach(
         recurso => {
 
             const item =
-                document.createElement(
-                    "li"
-                );
+                document.createElement("li");
 
 
             item.innerText =
                 "✔ " + recurso;
 
 
-            lista.appendChild(
-                item
-            );
+            lista.appendChild(item);
 
         }
     );
 
 
-    acessibilidadeLocal.innerHTML =
-        "";
-
+    acessibilidadeLocal.innerHTML = "";
 
     acessibilidadeLocal.appendChild(
         lista
@@ -1032,42 +642,30 @@ function mostrarAcessibilidade(
 // ABRIR PESQUISA
 // =========================================
 
-pesquisa.addEventListener(
-    "focus",
-    function() {
-
-        pesquisarLocais();
-
-    }
-);
+pesquisa.addEventListener("focus", function() {
+    pesquisarLocais();
+});
 
 
 // =========================================
 // PESQUISAR ENQUANTO DIGITA
 // =========================================
 
-pesquisa.addEventListener(
-    "input",
-    function() {
-
-        pesquisarLocais();
-
-    }
-);
+pesquisa.addEventListener("input", function() {
+    pesquisarLocais();
+});
 
 
 // =========================================
 // FILTRO DE CATEGORIA
 // =========================================
 
-filtroCategoria.addEventListener(
-    "change",
-    function() {
-
+if (filtroCategoria) {
+    filtroCategoria.addEventListener("change", function() {
+        pesquisa.value = "";
         pesquisarLocais();
-
-    }
-);
+    });
+}
 
 
 // =========================================
@@ -1076,126 +674,36 @@ filtroCategoria.addEventListener(
 
 function pesquisarLocais() {
 
-    const termo =
-        pesquisa.value
-            .toLowerCase()
-            .trim();
+    const termo = pesquisa.value.toLowerCase().trim();
+    const categoriaSelecionada = filtroCategoria
+        ? filtroCategoria.value.toLowerCase().trim()
+        : "";
 
+    const resultados = locais.filter(local => {
 
-    const categoriaSelecionada =
-        filtroCategoria.value
-            .toLowerCase()
-            .trim();
+        const nome = (local.nome || "").toLowerCase();
+        const cidade = (local.cidade || "").toLowerCase();
+        const categoria = (local.categoria || "").toLowerCase();
+        const endereco = (local.endereco || "").toLowerCase();
+        const descricao = (local.descricao || "").toLowerCase();
 
+        const correspondePesquisa =
+            !termo ||
+            nome.includes(termo) ||
+            cidade.includes(termo) ||
+            categoria.includes(termo) ||
+            endereco.includes(termo) ||
+            descricao.includes(termo);
 
-    // =====================================
-    // FILTRAR LOCAIS
-    // =====================================
+        const correspondeCategoria =
+            !categoriaSelecionada ||
+            categoria === categoriaSelecionada;
 
-    const resultados =
-        locais.filter(
-            local => {
+        return correspondePesquisa && correspondeCategoria;
 
-                const nome =
-                    (
-                        local.nome ||
-                        ""
-                    )
-                    .toLowerCase();
+    });
 
-
-                const cidade =
-                    (
-                        local.cidade ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                const categoria =
-                    (
-                        local.categoria ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                const endereco =
-                    (
-                        local.endereco ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                const descricao =
-                    (
-                        local.descricao ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                // =================================
-                // PESQUISA
-                // =================================
-
-                const correspondePesquisa =
-
-                    !termo ||
-
-                    nome.includes(
-                        termo
-                    ) ||
-
-                    cidade.includes(
-                        termo
-                    ) ||
-
-                    categoria.includes(
-                        termo
-                    ) ||
-
-                    endereco.includes(
-                        termo
-                    ) ||
-
-                    descricao.includes(
-                        termo
-                    );
-
-
-                // =================================
-                // CATEGORIA
-                // =================================
-
-                const correspondeCategoria =
-
-                    !categoriaSelecionada ||
-
-                    categoria ===
-                    categoriaSelecionada;
-
-
-                return (
-
-                    correspondePesquisa &&
-
-                    correspondeCategoria
-
-                );
-
-            }
-        );
-
-
-    // =====================================
-    // MOSTRAR RESULTADOS
-    // =====================================
-
-    mostrarListaLocais(
-        resultados
-    );
+    mostrarListaLocais(resultados);
 
 }
 
@@ -1206,7 +714,7 @@ function pesquisarLocais() {
 
 document.addEventListener(
     "click",
-    function(evento) {
+    (evento) => {
 
         const clicouNaPesquisa =
             pesquisa.contains(
@@ -1219,12 +727,8 @@ document.addEventListener(
                 evento.target
             );
 
-
         const clicouNoFiltro =
-            filtroCategoria.contains(
-                evento.target
-            );
-
+            filtroCategoria && filtroCategoria.contains(evento.target);
 
         if (
             !clicouNaPesquisa &&
@@ -1249,30 +753,13 @@ document.addEventListener(
 async function verificarFavorito() {
 
     if (!localAtual) {
-
         return;
-
     }
 
-
-    // =====================================
-    // FORTE DE SÃO MARCELO VIRTUAL
-    // =====================================
-
-    if (
-        typeof localAtual.id ===
-        "string"
-    ) {
-
-        botaoFavorito.innerText =
-            "♡ Favoritar";
-
-        botaoFavorito.classList.remove(
-            "favoritado"
-        );
-
+    if (typeof localAtual.id === "string") {
+        botaoFavorito.innerText = "♡ Favoritar";
+        botaoFavorito.classList.remove("favoritado");
         return;
-
     }
 
 
@@ -1287,11 +774,9 @@ async function verificarFavorito() {
         botaoFavorito.innerText =
             "♡ Favoritar";
 
-
         botaoFavorito.classList.remove(
             "favoritado"
         );
-
 
         return;
 
@@ -1327,13 +812,10 @@ async function verificarFavorito() {
             await resposta.json();
 
 
-        if (
-            dados.favorito
-        ) {
+        if (dados.favorito) {
 
             botaoFavorito.innerText =
                 "❤️ Favoritado";
-
 
             botaoFavorito.classList.add(
                 "favoritado"
@@ -1343,7 +825,6 @@ async function verificarFavorito() {
 
             botaoFavorito.innerText =
                 "♡ Favoritar";
-
 
             botaoFavorito.classList.remove(
                 "favoritado"
@@ -1371,32 +852,13 @@ async function verificarFavorito() {
 async function alternarFavorito() {
 
     if (!localAtual) {
-
-        alert(
-            "Selecione um local primeiro."
-        );
-
+        alert("Selecione um local primeiro.");
         return;
-
     }
 
-
-    // =====================================
-    // FORTE DE SÃO MARCELO AINDA NÃO ESTÁ
-    // NO BANCO
-    // =====================================
-
-    if (
-        typeof localAtual.id ===
-        "string"
-    ) {
-
-        alert(
-            "O Forte de São Marcelo ainda precisa ser cadastrado no banco de dados para utilizar favoritos."
-        );
-
+    if (typeof localAtual.id === "string") {
+        alert("O Forte de São Marcelo ainda precisa ser cadastrado no banco de dados para utilizar favoritos.");
         return;
-
     }
 
 
@@ -1412,10 +874,8 @@ async function alternarFavorito() {
             "Você precisa estar logado para favoritar um local."
         );
 
-
         window.location.href =
             "login.html";
-
 
         return;
 
@@ -1438,15 +898,12 @@ async function alternarFavorito() {
             "Sessão inválida. Faça login novamente."
         );
 
-
         localStorage.removeItem(
             "usuario"
         );
 
-
         window.location.href =
             "login.html";
-
 
         return;
 
@@ -1465,9 +922,7 @@ async function alternarFavorito() {
         // REMOVER FAVORITO
         // =====================================
 
-        if (
-            estaFavoritado
-        ) {
+        if (estaFavoritado) {
 
             const resposta =
                 await fetch(
@@ -1520,7 +975,6 @@ async function alternarFavorito() {
 
             botaoFavorito.innerText =
                 "♡ Favoritar";
-
 
             botaoFavorito.classList.remove(
                 "favoritado"
@@ -1588,7 +1042,6 @@ async function alternarFavorito() {
         botaoFavorito.innerText =
             "❤️ Favoritado";
 
-
         botaoFavorito.classList.add(
             "favoritado"
         );
@@ -1617,7 +1070,7 @@ async function alternarFavorito() {
 
 botaoAvaliacoes.addEventListener(
     "click",
-    function() {
+    () => {
 
         if (!localAtual) {
 
@@ -1651,7 +1104,7 @@ botaoAvaliacoes.addEventListener(
 
 botaoAvaliar.addEventListener(
     "click",
-    function() {
+    () => {
 
         const usuarioSalvo =
             localStorage.getItem(
@@ -1665,10 +1118,8 @@ botaoAvaliar.addEventListener(
                 "Você precisa fazer login para avaliar um local."
             );
 
-
             window.location.href =
                 "login.html";
-
 
             return;
 
@@ -1715,6 +1166,9 @@ botaoFavorito.addEventListener(
 // INICIAR
 // =========================================
 
+// Mostrar imagem do InClue
 mostrarImagemPadrao();
 
+
+// Carregar locais do servidor
 carregarLocais();

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acessibilidade - InClue</title>
+
+    <!-- FONTE -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/acessibilidade.css">
+    <link rel="stylesheet" href="css/perfil-flutuante.css">
+
+    <!-- ESTILOS DA PESQUISA, FILTRO E RESULTADOS -->
+    <style>
+        /* ÁREA DA PESQUISA */
+        .search-box {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            z-index: 1000;
+        }
+
+        /* PESQUISA E FILTRO COM O MESMO VISUAL */
+        #pesquisa,
+        #filtro-categoria-botao {
+            display: block;
+            width: 100%;
+            min-height: 48px;
+            box-sizing: border-box;
+            padding: 12px 16px;
+            border: 2px solid #dcefe5;
+            border-radius: 12px;
+            background-color: #ffffff;
+            color: #333333;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #pesquisa::placeholder {
+            color: #777777;
+        }
+
+        #pesquisa:focus,
+        #filtro-categoria-botao:focus {
+            border-color: #3ca56f;
+            box-shadow: 0 0 0 3px rgba(60, 165, 111, 0.12);
+        }
+
+        /* SETA DO SELETOR DE CATEGORIA */
+        #filtro-categoria-botao {
+            cursor: pointer;
+            padding-right: 16px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        #filtro-categoria-botao .seta-filtro {
+            flex-shrink: 0;
+            color: #176b45;
+            transition: transform 0.2s ease;
+        }
+
+        #filtro-categoria-botao[aria-expanded="true"] .seta-filtro {
+            transform: rotate(180deg);
+        }
+
+        /* SELECT ORIGINAL: mantido para o JavaScript do filtro */
+        .select-categoria-original {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* MENU PERSONALIZADO DE CATEGORIAS */
+        .filtro-categoria-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 6px;
+            box-sizing: border-box;
+            background: #ffffff;
+            border: 2px solid #dcefe5;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            z-index: 3000;
+        }
+
+        .filtro-categoria-menu[hidden] {
+            display: none;
+        }
+
+        .filtro-categoria-opcao {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 0;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #333333;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .filtro-categoria-opcao:hover,
+        .filtro-categoria-opcao:focus-visible {
+            background: #f0faf5;
+            color: #176b45;
+            outline: none;
+        }
+
+        .filtro-categoria-opcao[aria-selected="true"] {
+            background: #e8f7ef;
+            color: #176b45;
+            font-weight: 600;
+        }
+
+        /* ÁREA DO FILTRO */
+        .filtro-container {
+            position: relative;
+            z-index: 2500;
+            width: 100%;
+            margin: 15px 0 20px;
+        }
+
+        .filtro-container label {
+            display: block;
+            margin-bottom: 7px;
+            color: #176b45;
+            font-weight: 600;
+        }
+
+        /* MAPA FICA ATRÁS DO MENU DE CATEGORIAS */
+        .mapa {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* LISTA DE RESULTADOS DA PESQUISA */
+        .lista-locais {
+            display: none;
+            position: static;
+            width: 100%;
+            max-height: 340px;
+            overflow-y: auto;
+            margin: 12px 0 20px;
+            background: #ffffff;
+            border: 2px solid #dcefe5;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+            padding: 6px;
+        }
+
+        .lista-locais.aberta {
+            display: block;
+        }
+
+        /* CARD DO LOCAL */
+        .lista-locais .card.local-card {
+            display: block;
+            background: #ffffff;
+            border: none;
+            border-bottom: 1px solid #edf3ef;
+            border-radius: 12px;
+            box-shadow: none;
+            margin: 0;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .lista-locais .card.local-card:last-child {
+            border-bottom: none;
+        }
+
+        .lista-locais .card.local-card:hover {
+            background: #f0faf5;
+            transform: translateX(3px);
+        }
+
+        .lista-locais .card.local-card h3 {
+            margin: 0 0 5px;
+            color: #176b45;
+            font-size: 16px;
+        }
+
+        .lista-locais .card.local-card p {
+            margin: 3px 0;
+            color: #666666;
+            font-size: 13px;
+        }
+
+        .lista-locais .nenhum-resultado {
+            padding: 22px;
+            margin: 0;
+            text-align: center;
+            color: #666666;
+        }
+
+        .lista-locais::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .lista-locais::-webkit-scrollbar-thumb {
+            background: #b7dcc8;
+            border-radius: 10px;
+        }
+
+        .lista-locais::-webkit-scrollbar-track {
+            background: #f4f8f6;
+        }
+
+        /* INDICAÇÃO DA CATEGORIA */
+        .categoria-filtro {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 4px 9px;
+            background: #e8f7ef;
+            color: #176b45;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 600px) {
+            .filtro-container {
+                margin-top: 12px;
+            }
+
+            #pesquisa,
+            #filtro-categoria-botao {
+                min-height: 46px;
+                font-size: 14px;
+            }
+
+            .lista-locais {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>InClue</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastre-se</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="contato.html">Contato</a>
+            <a href="acessibilidade.html" class="active">Acessibilidade</a>
+        </nav>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="acessibilidade">
+        <section class="busca">
+            <h2>Encontre um local acessível</h2>
+
+            <!-- PESQUISA -->
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Pesquisar local..."
+                    autocomplete="off"
+                    aria-label="Pesquisar local"
+                >
+
+            </div>
+
+            <!-- FILTRO POR CATEGORIA -->
+            <div class="filtro-container">
+                <label for="filtro-categoria-botao">Filtrar por categoria</label>
+
+                <!-- Botão visível, com o mesmo estilo do campo de pesquisa -->
+                <button
+                    type="button"
+                    id="filtro-categoria-botao"
+                    aria-label="Filtrar locais por categoria"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-controls="menu-categorias"
+                >
+                    <span id="filtro-categoria-texto">Todas as categorias</span>
+                    <span class="seta-filtro" aria-hidden="true">▾</span>
+                </button>
+
+                <div
+                    id="menu-categorias"
+                    class="filtro-categoria-menu"
+                    role="listbox"
+                    aria-label="Categorias disponíveis"
+                    hidden
+                ></div>
+
+                <!-- O select original é mantido para o filtro do js/acessibilidade.js -->
+                <select
+                    id="filtro-categoria"
+                    class="select-categoria-original"
+                    aria-hidden="true"
+                    tabindex="-1"
+                >
+                    <option value="">Todas as categorias</option>
+                </select>
+            </div>
+
+            <!-- RESULTADOS ABAIXO DA PESQUISA E DO FILTRO -->
+            <div id="lista-locais" class="lista-locais"></div>
+
+            <!-- MAPA -->
+            <div class="mapa">
+                <iframe
+                    id="mapa-local"
+                    src="https://www.google.com/maps?q=Salvador+BA&output=embed"
+                    loading="lazy"
+                    title="Mapa do local"
+                ></iframe>
+            </div>
+        </section>
+
+        <!-- DETALHES DO LOCAL -->
+        <section class="detalhes">
+            <div class="imagem-container">
+                <img
+                    id="imagem-local"
+                    src="img/inclue.png"
+                    alt="InClue"
+                    class="imagem-inclue"
+                >
+            </div>
+
+            <h2 id="nome-local">Selecione um local</h2>
+            <p id="categoria-local"></p>
+
+            <p>
+                <strong>📍 Endereço:</strong>
+                <span id="endereco-local">-</span>
+            </p>
+
+            <p>
+                <strong>🏙️ Cidade:</strong>
+                <span id="cidade-local">-</span>
+            </p>
+
+            <div class="descricao-local">
+                <h3>Sobre o local</h3>
+                <p id="descricao">Selecione um local para visualizar suas informações.</p>
+            </div>
+
+            <div class="recursos">
+                <h3>♿ Recursos de acessibilidade</h3>
+                <div id="acessibilidade-local">Selecione um local.</div>
+            </div>
+
+            <div class="acoes">
+                <button class="btn" id="botao-favorito" type="button" disabled>
+                    ♡ Favoritar
+                </button>
+
+                <button class="btn" id="botao-avaliacoes" type="button" disabled>
+                    ⭐ Ver avaliações
+                </button>
+
+                <button class="btn" id="botao-avaliar" type="button" disabled>
+                    ✍️ Fazer avaliação
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        &copy; 2026 - Projeto desenvolvido por -
+        Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
+        Mostra STEAM
+    </footer>
+
+    <!-- JAVASCRIPT ORIGINAL, SEM ALTERAÇÕES -->
+    <script src="js/acessibilidade.js"></script>
+    <script>
+(() => {
+    const select = document.getElementById("filtro-categoria");
+    const botao = document.getElementById("filtro-categoria-botao");
+    const texto = document.getElementById("filtro-categoria-texto");
+    const menu = document.getElementById("menu-categorias");
+    const container = document.querySelector(".filtro-container");
+    const pesquisa = document.getElementById("pesquisa");
+    const listaLocais = document.getElementById("lista-locais");
+
+    if (!select || !botao || !texto || !menu || !container) return;
+
+    let locaisDoFiltro = [];
+
+    function fecharMenu() {
+        menu.hidden = true;
+        botao.setAttribute("aria-expanded", "false");
+    }
+
+    function atualizarTexto() {
+        const opcao = select.options[select.selectedIndex];
+        texto.textContent = opcao ? opcao.textContent.trim() : "Todas as categorias";
+    }
+
+    function montarMenu() {
+        const valorAtual = select.value;
+        menu.replaceChildren();
+
+        Array.from(select.options).forEach((opcao) => {
+            const item = document.createElement("button");
+            item.type = "button";
+            item.className = "filtro-categoria-opcao";
+            item.setAttribute("role", "option");
+            item.setAttribute("aria-selected", opcao.value === valorAtual ? "true" : "false");
+            item.textContent = opcao.textContent.trim();
+
+            item.addEventListener("click", () => {
+                select.value = opcao.value;
+                if (pesquisa) pesquisa.value = "";
+                select.dispatchEvent(new Event("change", { bubbles: true }));
+                atualizarTexto();
+                montarMenu();
+                fecharMenu();
+            });
+
+            menu.appendChild(item);
+        });
+
+        atualizarTexto();
+    }
+
+    function obterLocaisDisponiveis() {
+        let atuais = [];
+
+        // Reutiliza a lista do js/acessibilidade.js quando estiver carregada.
+        try {
+            if (typeof locais !== "undefined" && Array.isArray(locais)) {
+                atuais = locais;
+            }
+        } catch (erro) {
+            // Usa a lista obtida abaixo caso a variável não esteja disponível.
+        }
+
+        return atuais.length ? atuais : locaisDoFiltro;
+    }
+
+    function filtrarLocais() {
+        const locaisBase = obterLocaisDisponiveis();
+        if (!Array.isArray(locaisBase)) return;
+
+        const termo = pesquisa ? pesquisa.value.toLowerCase().trim() : "";
+        const categoriaSelecionada = select.value.toLowerCase().trim();
+
+        const resultados = locaisBase.filter((local) => {
+            const nome = (local.nome || "").toLowerCase();
+            const cidade = (local.cidade || "").toLowerCase();
+            const categoria = (local.categoria || "").toLowerCase();
+            const endereco = (local.endereco || "").toLowerCase();
+            const descricao = (local.descricao || "").toLowerCase();
+
+            const correspondePesquisa = !termo ||
+                nome.includes(termo) ||
+                cidade.includes(termo) ||
+                categoria.includes(termo) ||
+                endereco.includes(termo) ||
+                descricao.includes(termo);
+
+            const correspondeCategoria = !categoriaSelecionada ||
+                categoria === categoriaSelecionada;
+
+            return correspondePesquisa && correspondeCategoria;
+        });
+
+        if (typeof mostrarListaLocais === "function") {
+            mostrarListaLocais(resultados);
+            if (listaLocais) listaLocais.classList.add("aberta");
+        }
+    }
+
+    function preencherCategorias(lista) {
+        const valorAtual = select.value;
+        const categorias = [...new Set(
+            lista.map((local) => (local.categoria || "").trim())
+                .filter(Boolean)
+        )].sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+        select.replaceChildren();
+
+        const todas = document.createElement("option");
+        todas.value = "";
+        todas.textContent = "Todas as categorias";
+        select.appendChild(todas);
+
+        categorias.forEach((categoria) => {
+            const opcao = document.createElement("option");
+            opcao.value = categoria;
+            opcao.textContent = categoria;
+            select.appendChild(opcao);
+        });
+
+        // Mantém a categoria já selecionada caso ela ainda exista.
+        if (Array.from(select.options).some((opcao) => opcao.value === valorAtual)) {
+            select.value = valorAtual;
+        }
+
+        montarMenu();
+    }
+
+    botao.addEventListener("click", () => {
+        if (menu.hidden) {
+            montarMenu();
+            menu.hidden = false;
+            botao.setAttribute("aria-expanded", "true");
+        } else {
+            fecharMenu();
+        }
+    });
+
+    select.addEventListener("change", () => {
+        atualizarTexto();
+        montarMenu();
+        filtrarLocais();
+    });
+
+    if (pesquisa) {
+        // Executa depois do listener de pesquisa já existente, mantendo os dois filtros combinados.
+        pesquisa.addEventListener("input", filtrarLocais);
+        pesquisa.addEventListener("focus", filtrarLocais);
+    }
+
+    document.addEventListener("click", (evento) => {
+        if (!container.contains(evento.target)) fecharMenu();
+    });
+
+    // A página carrega os locais pelo backend; este fetch também garante que as categorias apareçam.
+    fetch("http://localhost:3000/locais")
+        .then((resposta) => {
+            if (!resposta.ok) throw new Error("Não foi possível carregar as categorias.");
+            return resposta.json();
+        })
+        .then((dados) => {
+            locaisDoFiltro = Array.isArray(dados) ? dados : [];
+
+            // Inclui também eventuais locais acrescentados pelo JavaScript da página.
+            try {
+                if (typeof locais !== "undefined" && Array.isArray(locais)) {
+                    const ids = new Set(locaisDoFiltro.map((local) => String(local.id)));
+                    locais.forEach((local) => {
+                        if (!ids.has(String(local.id))) locaisDoFiltro.push(local);
+                    });
+                }
+            } catch (erro) {
+                // A lista do backend continua disponível.
+            }
+
+            preencherCategorias(locaisDoFiltro);
+        })
+        .catch((erro) => {
+            console.error("Erro ao carregar categorias:", erro);
+            montarMenu();
+        });
+
+    // Mantém o menu sincronizado se o JavaScript principal também preencher o select.
+    new MutationObserver(montarMenu).observe(select, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+
+    montarMenu();
+})();
+</script>
+
+<script src="js/perfil-flutuante.js"></script>
+</body>
+
+</html>

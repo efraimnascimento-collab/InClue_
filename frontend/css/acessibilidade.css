@@ -39,20 +39,14 @@ p {
 
 header {
     background-color: #FFFFFF;
-
     padding: 20px 40px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
     position: sticky;
     top: 0;
     z-index: 1000;
-
-    /* Espaço reservado para a bolinha do perfil */
     padding-right: 100px;
 }
 
@@ -70,20 +64,14 @@ nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-
-    /* Não deixa os links encostarem no perfil */
     padding-right: 10px;
 }
 
 nav a {
     margin: 10px;
-
     text-decoration: none;
-
     color: #7FBF90;
-
     font-weight: bold;
-
     transition: 0.3s;
 }
 
@@ -105,11 +93,6 @@ nav a.active {
     gap: 30px;
     padding: 40px;
     background-color: white;
-
-    /*
-       Faz a área ocupar a largura disponível
-       da página.
-    */
     width: 100%;
 }
 
@@ -197,7 +180,7 @@ nav a.active {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
 }
 
@@ -230,17 +213,9 @@ nav a.active {
 .detalhes {
     flex: 1;
     min-width: 0;
-
     background-color: #F5F7F6;
-
     padding: 20px;
-
     border-radius: 20px;
-
-    /*
-       Permite que os elementos internos
-       ocupem toda a largura disponível.
-    */
     width: 100%;
 }
 
@@ -264,26 +239,13 @@ nav a.active {
    IMAGEM DO LOCAL
 ========================================= */
 
-/*
-   A imagem agora ocupa praticamente
-   toda a largura do quadro de detalhes.
-
-   NÃO usamos max-width: 500px aqui,
-   pois isso fazia sobrar espaço vazio.
-*/
-
 .detalhes img {
     width: 100%;
     max-width: none;
-
     height: 300px;
-
     object-fit: cover;
-
     border-radius: 20px;
-
     margin-bottom: 20px;
-
     display: block;
 }
 
@@ -297,18 +259,12 @@ nav a.active {
     margin-bottom: 20px;
 }
 
-
-/* Garante que a imagem preencha o container */
-
 .imagem-container img {
     width: 100%;
     max-width: none;
     height: 300px;
-
     object-fit: cover;
-
     border-radius: 20px;
-
     display: block;
 }
 
@@ -380,35 +336,24 @@ nav a.active {
 
 .acoes {
     margin-top: 20px;
-
     display: flex;
-
     gap: 10px;
-
     flex-wrap: wrap;
 }
 
 .acoes .btn {
     background-color: #9FD3A8;
-
     border: none;
-
     padding: 12px 25px;
-
     border-radius: 20px;
-
     font-size: 16px;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
 .acoes .btn:hover {
     background-color: #5FAF78;
-
     color: white;
-
     transform: scale(1.05);
 }
 
@@ -428,31 +373,22 @@ nav a.active {
 
 .btn-favorito {
     background-color: white;
-
     border: 2px solid #9FD3A8;
-
     color: #5FAF78;
-
     padding: 8px 15px;
-
     border-radius: 20px;
-
     cursor: pointer;
-
     font-size: 16px;
-
     transition: 0.3s;
 }
 
 .btn-favorito:hover {
     background-color: #CDEAD2;
-
     transform: scale(1.05);
 }
 
 .btn-favorito.favoritado {
     background-color: #9FD3A8;
-
     color: white;
 }
 
@@ -463,13 +399,9 @@ nav a.active {
 
 footer {
     background-color: #5FAF78;
-
     color: white;
-
     text-align: center;
-
     padding: 20px;
-
     margin-top: 40px;
 }
 
@@ -479,7 +411,6 @@ footer {
 ========================================= */
 
 @media (max-width: 900px) {
-
     .acessibilidade {
         flex-direction: column;
     }
@@ -498,7 +429,6 @@ footer {
         width: 100%;
         height: 300px;
     }
-
 }
 
 
@@ -507,12 +437,9 @@ footer {
 ========================================= */
 
 @media (max-width: 768px) {
-
     header {
         flex-direction: column;
-
         gap: 15px;
-
         text-align: center;
     }
 
@@ -528,35 +455,17 @@ footer {
         padding: 20px;
     }
 
-
-    /* =====================================
-       IMAGEM NO CELULAR
-    ===================================== */
-
     .detalhes img,
     .imagem-container img {
         width: 100%;
-
         height: 220px;
-
         object-fit: cover;
-
         border-radius: 20px;
     }
-
-
-    /* =====================================
-       MAPA
-    ===================================== */
 
     .mapa iframe {
         height: 300px;
     }
-
-
-    /* =====================================
-       BOTÕES
-    ===================================== */
 
     .acoes {
         flex-direction: column;
@@ -565,7 +474,6 @@ footer {
     .acoes .btn {
         width: 100%;
     }
-
 }
 
 
@@ -577,9 +485,10 @@ a {
     transition: 0.3s;
 }
 
+
 /* =========================================
    IMAGEM PADRÃO DO INCLUE
-   ========================================= */
+========================================= */
 
 .imagem-container {
     width: 100%;
@@ -596,4 +505,94 @@ a {
     object-fit: cover;
     object-position: center;
     display: block;
+}
+
+
+/* =========================================
+   BOTÃO DE FAVORITO
+========================================= */
+
+#botao-favorito {
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#botao-favorito.favoritado {
+    color: #e60023;
+    background-color: #fff;
+    border: 1px solid #e60023;
+}
+
+#botao-favorito.favoritado:hover {
+    color: #c4001d;
+    background-color: #fff0f2;
+}
+
+#botao-favorito:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+/* =========================================
+   FILTRO DE CATEGORIA
+========================================= */
+
+/* O HTML usa .filtro-container, e não .filtro-categoria. */
+.filtro-container {
+    margin: 16px 0;
+    width: 100%;
+}
+
+.filtro-container label {
+    display: block;
+    margin-bottom: 6px;
+    color: #087f5b;
+    font-weight: 600;
+}
+
+#filtro-categoria {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #27ae70;
+    border-radius: 12px;
+    background: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+#filtro-categoria:focus {
+    outline: none;
+    border-color: #3ca56f;
+    box-shadow: 0 0 0 3px rgba(60, 165, 111, 0.12);
+}
+
+.categoria-filtro {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 4px 9px;
+    background: #e8f7ef;
+    color: #176b45;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVIDADE DO FILTRO
+========================================= */
+
+@media (max-width: 600px) {
+    .filtro-container {
+        margin-top: 12px;
+    }
+
+    #filtro-categoria {
+        font-size: 14px;
+    }
 }

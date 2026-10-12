@@ -2,164 +2,99 @@
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Avaliar local - InClue</title>
 
-    <link
-        rel="stylesheet"
-        href="css/perfil-flutuante.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/avaliar.css"
-    >
-
+    <link rel="stylesheet" href="css/perfil-flutuante.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/avaliar.css">
 </head>
-
 
 <body>
 
-
-<!-- =========================================
-     CABEÇALHO
-========================================= -->
-
 <header>
-
     <h1>InClue</h1>
 
     <nav>
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="cadastro.html">
-            Cadastre-se
-        </a>
-
-        <a href="sobre.html">
-            Sobre
-        </a>
-
-        <a href="contato.html">
-            Contato
-        </a>
-
-        <a href="acessibilidade.html">
-            Acessibilidade
-        </a>
-
+        <a href="index.html">Home</a>
+        <a href="cadastro.html">Cadastre-se</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <a href="acessibilidade.html">Acessibilidade</a>
     </nav>
-
 </header>
-
-
-
-<!-- =========================================
-     FORMULÁRIO
-========================================= -->
 
 <section class="form-container">
 
-    <h2>
-        Compartilhe sua experiência
-    </h2>
+    <h2>Compartilhe sua experiência</h2>
 
     <p class="introducao-avaliacao">
-
-        Ajude outras pessoas da comunidade
-        InClue a conhecer locais turísticos
-        acessíveis em Salvador.
-
+        Ajude outras pessoas da comunidade InClue a conhecer locais turísticos acessíveis em Salvador.
     </p>
-
 
     <form id="avaliacao-form">
 
+        <!-- LOCAL -->
+        <label for="local_id">Escolha o local</label>
 
-        <!-- =================================
-             LOCAL
-        ================================== -->
-
-        <label for="local_id">
-            Escolha o local
-        </label>
-
-        <select
-            id="local_id"
-            required
-        >
-
-            <option value="">
-                Selecione um local
-            </option>
-
+        <select id="local_id" required>
+            <option value="">Selecione um local</option>
         </select>
 
+        <!-- NOTA: DROPDOWN PERSONALIZADO -->
+        <label for="btn-nota">Dê uma nota</label>
 
+        <div class="campo-dropdown" id="campo-nota">
 
-        <!-- =================================
-             NOTA
-        ================================== -->
+            <button
+                type="button"
+                class="dropdown-acessibilidade"
+                id="btn-nota"
+                aria-expanded="false"
+                aria-controls="menu-nota"
+            >
+                <span id="texto-nota">Escolha uma nota</span>
+                <span class="seta-dropdown">▾</span>
+            </button>
 
-        <label for="nota">
-            Dê uma nota
-        </label>
+            <div class="menu-acessibilidade" id="menu-nota" hidden>
 
-        <select
-            id="nota"
-            required
-        >
+                <label class="opcao-check opcao-nota">
+                    <input type="radio" name="nota_opcao" value="1">
+                    <span>⭐ 1 - Muito ruim</span>
+                </label>
 
-            <option value="">
-                Escolha uma nota
-            </option>
+                <label class="opcao-check opcao-nota">
+                    <input type="radio" name="nota_opcao" value="2">
+                    <span>⭐⭐ 2 - Ruim</span>
+                </label>
 
-            <option value="1">
-                ⭐ 1 - Muito ruim
-            </option>
+                <label class="opcao-check opcao-nota">
+                    <input type="radio" name="nota_opcao" value="3">
+                    <span>⭐⭐⭐ 3 - Regular</span>
+                </label>
 
-            <option value="2">
-                ⭐⭐ 2 - Ruim
-            </option>
+                <label class="opcao-check opcao-nota">
+                    <input type="radio" name="nota_opcao" value="4">
+                    <span>⭐⭐⭐⭐ 4 - Bom</span>
+                </label>
 
-            <option value="3">
-                ⭐⭐⭐ 3 - Regular
-            </option>
+                <label class="opcao-check opcao-nota">
+                    <input type="radio" name="nota_opcao" value="5">
+                    <span>⭐⭐⭐⭐⭐ 5 - Excelente</span>
+                </label>
 
-            <option value="4">
-                ⭐⭐⭐⭐ 4 - Bom
-            </option>
+            </div>
 
-            <option value="5">
-                ⭐⭐⭐⭐⭐ 5 - Excelente
-            </option>
+            <input type="hidden" id="nota" name="nota" value="">
 
-        </select>
+        </div>
 
-
-
-        <!-- =================================
-             NECESSIDADE / DEFICIÊNCIA
-        ================================== -->
-
-        <label>
-            Qual necessidade de acessibilidade
-            você considerou?
+        <!-- DEFICIÊNCIA / NECESSIDADE DE ACESSIBILIDADE -->
+        <label for="btn-deficiencias">
+            Qual necessidade de acessibilidade você considerou?
         </label>
 
         <div class="campo-dropdown">
@@ -171,326 +106,137 @@
                 aria-expanded="false"
                 aria-controls="menu-deficiencias"
             >
-
-                <span>
-                     Selecione uma ou mais opções
+                <span id="texto-deficiencias">
+                    Selecione uma ou mais opções
                 </span>
-
-                <span class="seta-dropdown">
-                    ▾
-                </span>
-
+                <span class="seta-dropdown">▾</span>
             </button>
 
+            <div class="menu-acessibilidade" id="menu-deficiencias" hidden>
 
-            <div
-                class="menu-acessibilidade"
-                id="menu-deficiencias"
-                hidden
-            >
-
-                <p class="titulo-grupo">
-                    Mobilidade e deficiência física
-                </p>
+                <p class="titulo-grupo">Mobilidade e deficiência física</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Cadeira de rodas"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Cadeira de rodas">
                     <span>🦽 Cadeira de rodas</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Mobilidade reduzida"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Mobilidade reduzida">
                     <span>🚶 Mobilidade reduzida</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Deficiência física"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Deficiência física">
                     <span>♿ Deficiência física</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Amputação ou uso de prótese"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Amputação ou uso de prótese">
                     <span>🦿 Amputação ou uso de prótese</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Deficiência visual
-                </p>
-
+                <p class="titulo-grupo">Deficiência visual</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Cegueira"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Cegueira">
                     <span>👁️ Cegueira</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Baixa visão"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Baixa visão">
                     <span>👓 Baixa visão</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Daltonismo"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Daltonismo">
                     <span>🎨 Daltonismo</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Deficiência auditiva
-                </p>
-
+                <p class="titulo-grupo">Deficiência auditiva</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Surdez"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Surdez">
                     <span>🦻 Surdez</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Baixa audição"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Baixa audição">
                     <span>👂 Baixa audição</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Cognitiva e neurodiversidade
-                </p>
-
+                <p class="titulo-grupo">Cognitiva e neurodiversidade</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Deficiência intelectual"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Deficiência intelectual">
                     <span>🧠 Deficiência intelectual</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="TEA"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="TEA">
                     <span>🧩 TEA (Transtorno do Espectro Autista)</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="TDAH"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="TDAH">
                     <span>🧠 TDAH</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Dificuldade de aprendizagem"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Dificuldade de aprendizagem">
                     <span>📖 Dificuldade de aprendizagem</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Comunicação
-                </p>
-
+                <p class="titulo-grupo">Comunicação</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Dificuldade de fala"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Dificuldade de fala">
                     <span>🗣️ Dificuldade de fala</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Comunicação alternativa"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Comunicação alternativa">
                     <span>💬 Comunicação alternativa</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Outras necessidades
-                </p>
-
+                <p class="titulo-grupo">Outras necessidades</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Idoso com dificuldade de mobilidade"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Idoso com dificuldade de mobilidade">
                     <span>👵 Idoso com dificuldade de mobilidade</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Gestante"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Gestante">
                     <span>🤰 Gestante</span>
-
                 </label>
-
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="deficiencia"
-                        value="Necessidade temporária de acessibilidade"
-                    >
-
+                    <input type="checkbox" name="deficiencia" value="Necessidade temporária de acessibilidade">
                     <span>🩼 Necessidade temporária de acessibilidade</span>
-
                 </label>
-
 
                 <div class="acoes-dropdown">
-
-                    <button
-                        type="button"
-                        id="limpar-deficiencias"
-                        class="btn-secundario"
-                    >
+                    <button type="button" id="limpar-deficiencias" class="btn-secundario">
                         Limpar
                     </button>
 
-                    <button
-                        type="button"
-                        id="confirmar-deficiencias"
-                        class="btn-confirmar"
-                    >
+                    <button type="button" id="confirmar-deficiencias" class="btn-confirmar">
                         Concluir
                     </button>
-
                 </div>
 
             </div>
-
         </div>
-
 
         <small class="ajuda-campo">
             Você pode selecionar mais de uma opção.
         </small>
 
-
-
-        <!-- =================================
-             IMPACTOS
-        ================================== -->
-
-        <label>
+        <!-- IMPACTOS NA ACESSIBILIDADE -->
+        <label for="btn-impactos">
             O que afetou a acessibilidade do local?
         </label>
-
 
         <div class="campo-dropdown">
 
@@ -501,366 +247,154 @@
                 aria-expanded="false"
                 aria-controls="menu-impactos"
             >
-
-                <span>
-                     Selecione os impactos encontrados
+                <span id="texto-impactos">
+                    Selecione os impactos encontrados
                 </span>
-
-                <span class="seta-dropdown">
-                    ▾
-                </span>
-
+                <span class="seta-dropdown">▾</span>
             </button>
 
+            <div class="menu-acessibilidade" id="menu-impactos" hidden>
 
-            <div
-                class="menu-acessibilidade"
-                id="menu-impactos"
-                hidden
-            >
-
-                <p class="titulo-grupo">
-                    Estrutura física
-                </p>
-
+                <p class="titulo-grupo">Estrutura física</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Não havia rampa de acesso"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Não havia rampa de acesso">
                     <span>Não havia rampa de acesso</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Rampas inadequadas ou muito inclinadas"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Rampas inadequadas ou muito inclinadas">
                     <span>Rampas inadequadas ou muito inclinadas</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Não havia elevador"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Não havia elevador">
                     <span>Não havia elevador</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Portas ou corredores estreitos"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Portas ou corredores estreitos">
                     <span>Portas ou corredores estreitos</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Piso irregular"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Piso irregular">
                     <span>Piso irregular</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de corrimão"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de corrimão">
                     <span>Falta de corrimão</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Acessibilidade visual
-                </p>
-
+                <p class="titulo-grupo">Acessibilidade visual</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Não havia piso tátil"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Não havia piso tátil">
                     <span>Não havia piso tátil</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de sinalização em Braille"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de sinalização em Braille">
                     <span>Falta de sinalização em Braille</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de contraste visual"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de contraste visual">
                     <span>Falta de contraste visual</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Pouca iluminação"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Pouca iluminação">
                     <span>Pouca iluminação</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Acessibilidade auditiva
-                </p>
-
+                <p class="titulo-grupo">Acessibilidade auditiva</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de informações visuais"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de informações visuais">
                     <span>Falta de informações visuais</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de intérprete de Libras"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de intérprete de Libras">
                     <span>Falta de intérprete de Libras</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de recursos de comunicação"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de recursos de comunicação">
                     <span>Falta de recursos de comunicação</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Comunicação e orientação
-                </p>
-
+                <p class="titulo-grupo">Comunicação e orientação</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Sinalização insuficiente"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Sinalização insuficiente">
                     <span>Sinalização insuficiente</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Informações pouco claras"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Informações pouco claras">
                     <span>Informações pouco claras</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de atendimento acessível"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de atendimento acessível">
                     <span>Falta de atendimento acessível</span>
-
                 </label>
 
-
-                <p class="titulo-grupo">
-                    Experiência e ambiente
-                </p>
-
+                <p class="titulo-grupo">Experiência e ambiente</p>
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Ambiente muito barulhento"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Ambiente muito barulhento">
                     <span>Ambiente muito barulhento</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Ambiente muito cheio"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Ambiente muito cheio">
                     <span>Ambiente muito cheio</span>
-
                 </label>
 
-
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Falta de espaço para circulação"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Falta de espaço para circulação">
                     <span>Falta de espaço para circulação</span>
-
                 </label>
-
 
                 <label class="opcao-check">
-
-                    <input
-                        type="checkbox"
-                        name="impacto"
-                        value="Não encontrei dificuldades"
-                    >
-
+                    <input type="checkbox" name="impacto" value="Não encontrei dificuldades">
                     <span>✅ Não encontrei dificuldades</span>
-
                 </label>
-
 
                 <div class="acoes-dropdown">
-
-                    <button
-                        type="button"
-                        id="limpar-impactos"
-                        class="btn-secundario"
-                    >
+                    <button type="button" id="limpar-impactos" class="btn-secundario">
                         Limpar
                     </button>
 
-                    <button
-                        type="button"
-                        id="confirmar-impactos"
-                        class="btn-confirmar"
-                    >
+                    <button type="button" id="confirmar-impactos" class="btn-confirmar">
                         Concluir
                     </button>
-
                 </div>
 
             </div>
-
         </div>
 
-
         <small class="ajuda-campo">
-            Conte o que realmente dificultou ou facilitou
-            sua experiência.
+            Conte o que realmente dificultou ou facilitou sua experiência.
         </small>
 
-
-
-        <!-- =================================
-             COMENTÁRIO
-        ================================== -->
-
-        <label for="comentario">
-            Conte sua experiência
-        </label>
+        <!-- COMENTÁRIO -->
+        <label for="comentario">Conte sua experiência</label>
 
         <textarea
             id="comentario"
+            name="comentario"
             rows="6"
             placeholder="Conte como foi sua experiência com a acessibilidade do local..."
             required
         ></textarea>
 
-
-
-        <!-- =================================
-             FOTO
-        ================================== -->
-
-        <label>
-            Adicione uma foto
-        </label>
-
+        <!-- FOTO -->
+        <label for="foto">Adicione uma foto</label>
 
         <div class="campo-foto-avaliacao">
 
@@ -869,9 +403,8 @@
                 id="btn-escolher-foto"
                 class="btn btn-foto"
             >
-                 Adicionar foto
+                Adicionar foto
             </button>
-
 
             <input
                 type="file"
@@ -881,66 +414,37 @@
                 hidden
             >
 
-
-            <span
-                id="nome-foto"
-                class="nome-foto"
-            >
+            <span id="nome-foto" class="nome-foto">
                 Nenhuma foto selecionada
             </span>
 
         </div>
 
-
-        <small>
-            Formatos permitidos: JPG, PNG ou WEBP.
-            Tamanho máximo: 5 MB.
+        <small class="ajuda-campo">
+            Formatos permitidos: JPG, PNG ou WEBP. Tamanho máximo: 5 MB.
         </small>
 
-
-
-        <!-- =================================
-             PUBLICAR
-        ================================== -->
-
-        <button
-            type="submit"
-            class="btn btn-publicar"
-        >
+        <!-- PUBLICAR -->
+        <button type="submit" class="btn btn-publicar">
             Publicar avaliação
         </button>
 
-
         <p class="mensagem-final">
-            Sua experiência pode ajudar
-            outras pessoas! 💚
+            Sua experiência pode ajudar outras pessoas! 💚
         </p>
 
     </form>
 
 </section>
 
-
-
-<!-- =========================================
-     RODAPÉ
-========================================= -->
-
 <footer>
-
     &copy; 2026 - Projeto desenvolvido por -
     Efraim Nascimento, Grazielle Miranda, Júlia Abreu e Maria Luiza Santana –
     Mostra STEAM
-
 </footer>
 
-
-
 <script src="js/avaliar.js"></script>
-
 <script src="js/perfil-flutuante.js"></script>
 
-
 </body>
-
 </html>
